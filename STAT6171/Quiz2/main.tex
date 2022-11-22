@@ -1,0 +1,342 @@
+\documentclass[
+	11pt, % 10pt - 12pt
+	%letterpaper
+	%indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+\newcommand{\fixedwidth}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+% ! CUSTOM - LST Preset
+\lstset{
+    language=SQL,
+    frame=single, % Frames
+    showstringspaces=false, % Don't put marks in string spaces
+    numbers=left, % Line numbers on left
+    numberstyle=\tiny, % Line numbers styling
+    breaklines,
+    basicstyle=\fontfamily{cmtt}\selectfont\small,
+    columns=fullflexible,
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{June 24th, 2022}
+% Assignment title
+\title{Quiz 2 Answer}
+
+% Course details
+\class{Basic Statistics (STAT6171)}
+\professor{Ms.\ Diah Wihardini}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{Question 1}
+
+\begin{problem}
+The given dataset (Airport.xlsx) provides the responses from a random sample of 50 travelers who filled in a survey on the quality of the new Kertajaya airport in Yogyakarta. The maximum possible rating is 10 points:
+
+\begin{enumerate}[a.]
+	\item Provide a point estimate of the population average of quality ratings.
+	\item At 90\% of confidence, what is the margin of error?
+	\item What is the 90\% confidence interval estimates of the average ratings?
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer 1a}
+
+The point estimate of the population average of quality ratings is:
+\[
+	\begin{aligned}
+		\text{Average} & = \frac{\Sigma_x}{n} \\
+		               & = \frac{317}{50}     \\
+		               & \approx 3.67         \\
+	\end{aligned}
+\]
+
+\subsection*{Answer 1b}
+
+Let \( \sigma \) to be the standard deviation of the population. Calculated using Excel (using the \fixedwidth{STDDEV.S} formula), the standard deviation of the sample approximately \(2.16\). With sample size \(n=50\) and the 90\% critical factor \(z=1.645\), the margin of error is calculated as follow:
+
+\[
+	\begin{aligned}
+		\text{Margin of error} & = \frac{Z \cdot \sigma}{\sqrt{n}}    \\
+		                       & = \frac{1.645 \cdot 2.16}{\sqrt{50}} \\
+		                       & \approx 0.5025                       \\
+	\end{aligned}
+\]
+
+\subsection*{Answer 1c}
+
+With this result, we may estimate that the average quality rating of the new Kertajaya airport is 3.67 unit give or take 0.5025 unit (margin of error).
+
+\pagebreak
+
+\section*{Question 2}
+
+\begin{problem}
+For sushi-making factories in San Francisco, the mean wage of its employees is normally \$22.50 per hour. A tax auditor is trying to investigate whether such an amount is less than the mean hourly wage of similar food-producing industry in the surrounding areas.
+
+\begin{enumerate}[a.]
+	\item Develop the hypotheses that can be used to test whether the population mean hourly wage of the food-producing industry is less from the mean hourly wage of the sushi-making factories.
+	\item From a sample of 30 food-producing factories in the areas, their employee's mean hourly wage was recorded as \$21.90. If we assume that the population standard deviation of the mean hourly wage is \$2.2 per hour, calculate the p-value.
+	\item With 5\% significance level, what is your conclusion?
+	\item Repeat this hypothesis test using the critical value approach. What is your conclusion?
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer 2a}
+
+Converting dollar value 1:1 as an unit, we may solve this using the null hypothesis where \( \mu = 22.5\) and an alternative hypotesis where \( \mu <= 22.5\).
+
+\subsection*{Answer 2b}
+Given a standard deviation of \(2.2\), first, we would need to calculate the population standard error of the mean hourly wage of the food-producing industry:
+
+\begin{align}
+	\begin{aligned}
+		\text{Standard Error} & = \frac{\sigma}{\sqrt{n}} \\
+		                      & = \frac{2.2}{\sqrt{30}}   \\
+		                      & \approx 0.4017            \\
+	\end{aligned}
+\end{align}
+
+Then, we can calculate the p-value using the following formula:
+
+\begin{align}
+	\begin{aligned}
+		\text{P-value} & = P(z \leq \frac{(\bar{x} - \mu)}{\text{Standard Error}}) \\
+		               & = P(z \leq \frac{(21.9 - 22.5)}{0.4017})                  \\
+		               & \approx P(z \leq -1.49)
+	\end{aligned}
+\end{align}
+
+Using a lookup table, we can calculate the critical value of the p-value \(P(z \leq -1.49) = 0.0681\)
+
+\subsection*{Answer 2c}
+
+With a significance level of 5\% (0.05), it is impossible to accept null hypothesis, thus concluding that \textbf{the sushi factory's mean hourly wage is less than the food-producing industry's mean hourly wage}.
+
+\subsection*{Answer 2d}
+
+The formula to calculate the hypotesis testing for population is as follows:
+
+\[
+	t = \frac{(\bar{x} - \mu)}{\text{Standard Error}}
+\]
+
+Given a significant level of 5\% (0.05), repeating the test using a critical value approach leads us to the same result as in the previous question.
+
+\section*{Question 3}
+\begin{problem}
+In order to estimate the difference between the average Miles per Gallon (MPG) of two different models of automobiles, samples are taken and the following information is collected.
+
+\begin{tabular}{l c c}
+	                & \textbf{Model A} & \textbf{Model B} \\
+	Sample Size     & 60               & 55               \\
+	Sample Mean     & 28               & 25               \\
+	Sample Variance & 16               & 9
+\end{tabular}
+\medskip
+\begin{enumerate}
+	\item Test the hypothesis if Model A gets a higher MPG than Model B.
+	\item Is there conclusive evidence to indicate the claim? Please explain.
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer 3}
+
+Let \(\mu_A\) and \(\mu_B\) denotes the average Miles per Gallon of Model A and Model B, respectively.
+
+Having both \(\sigma_A\) and \(\sigma_B\) unknown, assuming \(t_c\) to be our critical value, we can calculate the confidence interval for \(\mu_1 - \mu_2\) as follows:
+
+\[
+	(\bar{X_A} - \bar{X_B}) - t_c \sqrt{\frac{s_A^2}{n_A} + \frac{s_B^2}{n_B}} < \mu_A - \mu_B < (\bar{X_A} - \bar{X_B}) + t_c \sqrt{\frac{s_A^2}{n_A} + \frac{s_B^2}{n_B}}
+\]
+
+From this point on, I have chosen to use a confidence interval of 95\%.
+
+\medskip
+
+With a degree of freedom of \(54\), calculated by taking the smaller sample size and subtracting it by 1, plugging the value to the excel formula \fixedwidth{=T.INV.2T(0.05, 54)} will yield a critical value \(t_c = 2.0049\).
+
+Plugging in to the formula above:
+
+\[
+	(28 - 25) - 2.0049 \sqrt{\frac{16}{60} +\frac{9}{55}} < \mu_A - \mu_B < (28 - 25) + 2.0049 \sqrt{\frac{16}{60} + \frac{9}{55}}
+\]
+\[
+	3 - 1.315 < \mu_A - \mu_B < 3 + 1.315
+\]
+\[
+	1.685 < \mu_A - \mu_B < 4.315
+\]
+
+
+
+
+\pagebreak
+
+\section*{Question 4}
+\begin{problem}
+Since 2010, Samsung's share of the smartphone market has zoomed to 31\% past Apple's 15\%. However, the Apple's marketing manager, claimed that the new supply chain strategy could reduce the delivery time (in days) from warehouse to distribution channel as it would help Apple to regain the market. He took a sample of 10 deliveries using the old strategy and got the sample variance of the delivery time of 14.29. Meanwhile, from a sample of 7 deliveries using a new strategy, the sample variance of the delivery time was 2.57.
+
+\medskip
+
+\begin{enumerate}[a.]
+	\item Define the hypothesis statements to test whether there's a difference in the variance of delivery time between the old and new strategies.
+	\item Test the hypotheses using a 0.01 level of significance.
+	\item Explain your conclusion as if you report to the manager.
+\end{enumerate}
+\end{problem}
+
+\pagebreak
+
+\section*{Question 5}
+\begin{problem}
+An economic professor at Orlando College is interested in investigating the relationship between hours spent studying and total points (scores) earned in a course. The table below presents the data collected from the related 10 students who took the course last quarter.
+
+\medskip
+
+\begin{center}
+	\begin{tabular}{c c}
+		\toprule
+		\textbf{Hours} & \textbf{Scores} \\
+		\midrule
+		45             & 40              \\
+		30             & 35              \\
+		90             & 75              \\
+		60             & 65              \\
+		105            & 90              \\
+		65             & 50              \\
+		90             & 90              \\
+		80             & 80              \\
+		55             & 45              \\
+		75             & 65              \\
+	\end{tabular}
+\end{center}
+
+\medskip
+
+Please answer the following questions
+\begin{enumerate}[a.]
+	\item Write down the estimated regression equation showing how total scores earned is related to hours spent studying.
+	\item Interpret each of the regression coefficients.
+	\item Test the significance of the model with alpha = 5%.
+	\item Predict the total points earned by a student who spent 95 hours studying.
+	\item What is the value of the coefficient of determination? Interpret what it means.
+	\item What is the value of the correlation? Interpret what it means.
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer 5}
+
+A simple linear regression model has a general formula of \(y = mx + c\), where \(m\) is the slope and \(c\) is the intercept.
+
+We map start predicting the slope by calculating the values of both \(x\) and \(y\) axis, along with their respective standard deviations. The slope is calculated by the formula:
+
+\begin{equation}
+	m = \frac{ n \sum xy - (\sum x)(\sum y) }{ n \sum x^2 - (\sum x)^2 }
+\end{equation}
+
+Assuming that Hours is the x axis and Scores is the y axis, we can calculate the values of the needed sums:
+
+\[
+	\begin{aligned}
+		\sum x &= 695     \\
+		\sum y &= 635     \\
+		\sum x^2 &= 53025 \\
+		\sum y^2 &= 44025 \\
+		\sum xy &= 48050  \\
+	\end{aligned}
+\]
+
+\pagebreak
+
+Plugging in to the original slope formula:
+
+\begin{align}
+	\begin{aligned}
+		m &= \frac{ n \sum xy - (\sum x)(\sum y) }{ n \sum x^2 - (\sum x)^2 }\\
+		m &= \frac{10 \cdot 48050 - (695)(635) }{ 10 \cdot 53025 - (695)^2 }\\
+		m &\approx 0.8295
+	\end{aligned}
+\end{align}
+
+With the slope known (\(y = 0.8295x + c\)) we can calculate the intercept using the following formula:
+
+\begin{align}
+	\begin{aligned}
+		c &= \bar{y} - b\bar{x} \\
+		  &= 63.5 - 0.8295 \cdot 695 \\
+			&\approx 5.8470
+	\end{aligned}
+\end{align}
+
+Thus, the \textbf{regression formula will be \(y = 0.8295x + 5.8470\).}
+
+\subsection*{Answer 5c}
+Given that the level of significance \(\alpha = 0.05\)
+
+\subsection*{Answer 5d}
+
+Plugging in to the formula:
+
+\[
+	\begin{aligned}
+		x &= 95\\
+		y &= 5.8470 + 0.8295 \cdot 95\\
+			&= 84.6495\\
+	\end{aligned}
+\]
+
+Thus, we can predict that a student will get a score of 85 (rounded to the nearest whole number) if they have spent 95 hours studying.
+
+% \begin{enumerate}
+% 	\item We can also enumerate for ordered list
+% \end{enumerate}
+% \begin{itemize}
+% 	\item Or if you want, you can use itemize for unordered lists
+% \end{itemize}
+
+% \begin{flalign*}
+% 	\text{Here is some fancy aligned stuff } & \text{= \textbf{CHRIST}}         \\
+% 	\text{Here is some fancy aligned stuff } & \text{= [C, H, R, I, S, T]}      \\
+% 	\text{Here is some fancy aligned stuff } & \text{= [2, 7, 17, 11, 18, 19]}  \\
+% 	\text{Here is some fancy aligned stuff } & \text{= [8, 13, 23, 17, 24, 25]} \\
+% 	\text{Here is some fancy aligned stuff } & \text{= [i, n, x, r, y, y]}      \\
+% 	\\
+% 	\text{Decrypted message }                & \text{= \textbf{inxryz}}
+% \end{flalign*}
+
+% \lstinputlisting[]{code/.gitkeep}
+
+% \printbibliography[]{}
+
+
+\end{document}

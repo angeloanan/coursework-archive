@@ -1,0 +1,90 @@
+\documentclass[
+	11pt, % 10pt - 12pt
+	%letterpaper
+	%indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+\newcommand{\ipAddress}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+% ! CUSTOM - LST Preset
+\lstset{
+    language=SQL,
+    frame=single, % Frames
+    showstringspaces=false, % Don't put marks in string spaces
+    numbers=left, % Line numbers on left
+    numberstyle=\tiny, % Line numbers styling
+    breaklines,
+    basicstyle=\fontfamily{cmtt}\selectfont\small,
+    columns=fullflexible,
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{April 7th, 2022}
+% Assignment title
+\title{Quiz 1 Answer}
+
+% Course details
+\class{Basic Statistics (STAT6171)}
+\professor{Ms.\ Diah Wihardini}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{Question 1}
+
+\begin{problem}
+The University of Southern California conducted a survey to investigate whether people of different age groups differ in their response to e-mail messages (The New York Times, 2008). Based on a sample of 2000 email users, the table below lists the sample data based on the age of respondents and whether or not they answered quickly.
+\end{problem}
+
+\subsection*{Answer 1}
+
+\begin{enumerate}
+	\item We can also enumerate for ordered list
+\end{enumerate}
+\begin{itemize}
+	\item Or if you want, you can use itemize for unordered lists
+\end{itemize}
+
+\begin{flalign*}
+	\text{Here is some fancy aligned stuff } & \text{= \textbf{CHRIST}}         \\
+	\text{Here is some fancy aligned stuff } & \text{= [C, H, R, I, S, T]}      \\
+	\text{Here is some fancy aligned stuff } & \text{= [2, 7, 17, 11, 18, 19]}  \\
+	\text{Here is some fancy aligned stuff } & \text{= [8, 13, 23, 17, 24, 25]} \\
+	\text{Here is some fancy aligned stuff } & \text{= [i, n, x, r, y, y]}      \\
+	\\
+	\text{Decrypted message }                & \text{= \textbf{inxryz}}
+\end{flalign*}
+
+\lstinputlisting[]{code/.gitkeep}
+
+% \printbibliography[]{}
+
+
+\end{document}

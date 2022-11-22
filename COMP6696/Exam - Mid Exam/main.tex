@@ -1,0 +1,153 @@
+\documentclass[
+  11pt, % 10pt - 12pt
+  %letterpaper
+  %indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{amssymb} % Math symbols!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+% https://castel.dev/post/lecture-notes-2/#including-inkscape-figures-in-a-latex-document
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./graphics/}{#1.pdf_tex}
+}
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo --- 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{Apr 29th, 2022}
+% Assignment title
+\title{Mid-Semester Exam Answer}
+
+% Course details
+\class{Research Methodology in Computer Science (COMP6696)}
+\professor{Ms.\ Irene Anindaputri Iswanto}
+
+%----------------------------------------------------------------------------------------
+
+% Hyperlinks setup
+% Future reminder: hyperref package needs to be the last one to be loaded
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle=Mid-Semester Exam Answer,
+  pdfauthor=Christopher Angelo --- 2440041503,
+}
+\urlstyle{same}
+
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{Question 1}
+\begin{problem}
+All members of each group must collect at least 9 research papers (international) to be included in the paper. All papers must be at most 5 years the latest. Each paper must be different one to another (even in the same team). To accomplish this part, discuss it with your team.
+\end{problem}
+
+Please see Appendix 1 on the last page of the document.
+
+\section*{Question 2}
+\begin{problem}
+Make a literature review from your research project. Ensure that it must cite all references that you have as mentioned in table above. Bibliography must be made as well by using IEEE style.
+\end{problem}
+
+With rapid technological evolution toward intelligence and interactive technologies, it is required for us to balance everything. The 7 most outstanding challenges of humanity include Ethics, Well-being, Privacy and Security, Human-Environment Interactions and Accessibility including Universal Access\autocite{Stephanidis2019SevenHG}. Human-Environment Interaction along with Accessibility is one of the points mentioned that we need to consider in our research. It has been proven that improving the UX design of real-life space may be positively influential to the accessibility of elderly people \autocite{Yoo2021TheEO}, from which, we may ask whether improving a virtual program or application may reap positive benefit. To measure the level of user satisfaction on UX design, there are quite some indicators, in the form of questions, that are mainly used.
+
+The System Usability Scale is one old indicator that is dubbed `Quick and Dirty'. Created in 1996, it is reliable to this point with score conversion and comparison to other indicators available\autocite{Lewis2018MeasuringPU, Lewis2018ItemBF}. While it might seem that it is mature, it is still being improved to the point that an extended version of it has been suggested which includes text-field values for future system improvements suggestion\autocite{Harper2021APS}.
+
+Another indicator is the UMUX metric and their offspring, UMUX-LITE\@. It has been adapted into a possible product quality metric for healthcare technologies\autocite{Borsci2019IsTL} as well as spun off into an Artificial Intelligent based conversational agent diagnostic tool\autocite{Borsci2022TheCU}.
+
+While these metric were developed independently and seemingly asks of a different question, these metric has been proven again and again to measure the perceived level of usability\autocites{Berkman2016ReassessingTU, Lewis2018MeasuringPU, Lewis2019MeasuringPU}.
+
+\section*{Question 3}
+\begin{problem}
+Finalize introduction part of your research project. Ensure all important points in introduction are included. Failure in putting those important points will affect to your score.
+\end{problem}
+
+Introduction part of our research project is attached on the same zip file that this document came with.
+
+\section*{Question 4}
+\begin{problem}
+Combine all literature review from each member of your research project group into one comprehensive literature review. (Only doing “copy \& paste” from each literature review result is prohibited)
+\end{problem}
+
+With rapid technological evolution toward intelligence and interactive technologies, it is required for us to balance everything. The 7 most outstanding challenges of humanity include Ethics, Well-being, Privacy and Security, Human-Environment Interactions and Accessibility including Universal Access\autocite{Stephanidis2019SevenHG}. Human-Environment Interaction along with Accessibility is one of the points mentioned that we need to consider in our research. It has been proven that improving the UX design of real-life space may be positively influential to the accessibility of elderly people\autocite{Yoo2021TheEO}, from which, we may ask whether improving a virtual program or application may reap positive benefits.
+
+A user interface (UI) refers to a system and a user interacting with each other through commands or techniques to operate the system, input data, and use the contents\autocite{Jooh}. UI is the interface that is a tool that users can use to manipulate things\autocite{Roth2017UserIA} and can be found in systems such as computers, mobile devices, and games\autocite{Jooh}. On the other hand, UX refers to the overall experience related to the perception (emotion and thought), reaction, and behavior that a user feels and thinks through his or her direct or indirect use of a system\autocite{Jooh}. It is essentially the interaction between the user and a digital object, this is what humans experience\autocite{Roth2017UserIA}.
+
+There are a variety of challenges associated with a good user interface. One of them is aesthetics, \autocite{GlenaH} stated that for several years, HCI research has highlighted the positive impact of website aesthetics on constructs such as the overall impression, website utility, trust and credibility, perceived information quality, and, possibly, perceived usability. \autocite{SchmidtWolff+2018+41+55} elaborated that in most cases aesthetics has a positive influence on actual performance when users must perform tasks with a user interface.
+
+The effects of good or bad UI/UX can be seen in our daily lives. One of the important features of e-learning design is to have an attractive UI and a good UX\autocite{Handayani2020GamifiedLP}. In digital shopping, UI and UX have an inverse correlation on the effect of purchase intention\autocite{Watulingas}. A good UX will bring a significant positive effect on purchase intention, while the reverse is true for UI\autocite{Watulingas}. In gaming, users interact with the interface for as long as the users play. Bad UI/UX can cause confusion to players which will make them leave the game\autocite{Kurniawan2021UIUXMG}.
+
+When designing UI/UX, considerations which might include the target user's age and the availability of the product (i.e, platforms, target market section, etc) must be made. Older aged users have a tougher time seeing small things and accessing different gestures like drag \& drop and tap \& hold\autocite{Salman2018UsabilityEO}. Not only that, different platforms introduce different constraints. A personal computer (PC) will allow navigation using a mouse pointer and a physical keyboard, while in contrast, a mobile device will need to use a touchscreen for both mouse pointer and keyboard input. Constraints for PCs may or may not work with mobile devices and vice versa due to differences like size and resolution\autocite{Garca2017ValidationON}. Developers can use tools like Data Flow Diagram to help make clear UI/UX that will increase usability and avoid confusion\autocite{Wulandari2017DesignDF}.
+
+To measure the level of user satisfaction on UX design, there are quite some indicators that are mainly used, primarily in the form of questions. The usual way of evaluating usability is to let a subset of users use the interface and analyze their satisfaction along with the ability to perform selected tasks\autocite{Pastushenko}. While usability is commonly perceived as user experience, there is a subtle difference among them. `Usability' refers to the user's ability to use something to do a task, while `User Experience' takes a broader approach; looking at the individual's interaction with the object, as well as the thoughts, feelings, and perceptions generated\autocite{Erlinda}.
+
+The System Usability Scale is one old indicator that is dubbed `Quick and Dirty'\autocite{Khalid}. Created in 1996, it is a widely used standardized questionnaire for the assessment of perceived usability\autocite{Lewis}. Though, SUS is very reliable to this point with score conversion and comparison to other indicators available\autocite{Lewis2018MeasuringPU, Lewis2018ItemBF}. A positively worded System Usability Scale yields results that are like those generated using the standard System Usability Scale\autocite{Kortum2021IsIT}; either version of the scale can be used, although the positively worded scale may yield fewer errors in responding and scoring\autocite{Kortum2021IsIT}. Other approaches of evaluation are mainly a derivative of SUS. Research stated that compared to other models, the SUS metric achieved the highest accuracy level with the smallest number of samples\autocite{Souza2019UserEE}. An improvement of the said metric has been suggested which includes text-field input for future system improvements suggestion\autocite{Harper2021APS}.The higher the SUS score the better as it means that the evaluator likes it and is more likely to recommend it to other users\autocite{Indriana2017UIUXA, Drew}.
+
+An adaptation of SUS is the UMUX and the UMUX-LITE metric. It itself has been adapted into a possible product quality metric for healthcare technologies\autocite{Borsci2019IsTL} as well as spun off into an Artificial Intelligent based conversational agent diagnostic tool\autocite{Borsci2022TheCU}. While these metric were developed independently and seemingly asks of a different question, these metric has been proven again and again to measure the perceived level of usability\autocite{Lewis2018MeasuringPU}, \autocite{Berkman2016ReassessingTU, Lewis2019MeasuringPU}.
+
+
+\section*{Question 5}
+\begin{problem}
+Write down your own proposed method/solution for this research work. Proposed method must be technically sound. You may complete the answer by using any diagrams/graphics.
+\end{problem}
+
+For this research, I would suggest to survey people manually and measuring their performance on doing the given task on different apps and layout. Preferably having 3 different task for 3 different apps with layouts, ranging from very minimal in terms of UI design into the most sophisticated one, we will then measure the level of usability on each task via one of the UX metrics.
+
+
+\printbibliography{}
+
+
+\begin{landscape}
+  \textbf{Appendix 1}: Research paper list
+  \centering
+  \fontsize{8}{9}\selectfont
+  \begin{longtable}[l]{r | p{0.075\linewidth} p{0.08\linewidth} m{0.02\linewidth} p{0.15\linewidth} p{0.05\linewidth} p{0.17\linewidth} p{0.13\linewidth} p{0.17\linewidth}}
+    \toprule
+    No & Title                                                                                                                                                 & Author                                                                                                                      & Year & Objective                                                                                                                & Method             & Data                                                                                                                                   & Result                                                                                                                                                                      & Conclusion                                                                                                                                                                                                                                                                                                                                                   \\
+    \midrule
+    1  & Seven HCI Grand Challenges                                                                                                                            & Constantine Stephanidis, Gavriel Salvendy                                                                                   & 2019 & Investigate the Grand Challenges which arise in the current and emerging landscape of rapid technological evolution.     & Review             & N/A                                                                                                                                    & N/A                                                                                                                                                                         & We have already directed research towards creating technology to assist humanity in coping with major problems, such as resource scarcity, climate change, poverty and disasters. Social participation, social justice, and democracy are ideals that should not only be desired in this context, but also actively and systematically pursued and achieved. \\
+    2  & Re-Assessing the Usability Metric for User Experience (UM UX) Scale                                                                                   & Mehmet Ilker Berkman, Dilek Karahoca                                                                                        & 2016 & Re-evaluate the UMUX and UMUX-LITE scales using psychometric methods                                                     & Survey             & Online word processor evaluation survey and a web-based mind map software                                                              & Similar results: both UMUX and UMUX-LITE items were sensitive to users' experience with evaluated software; Could not detect difference of software when scores are closer. & Results  fall short in suggesting a construct structure for UMUX\@. Items tended to load on two different factors depending on negative or positive keying; Supporting evidence exists which fits for said structure model.                                                                                                                                  \\
+    3. & Measuring Perceived Usability: The CSUQ, SUS, and UMUX                                                                                                & James R. Lewis                                                                                                              & 2018 & Investigate the relationship between CSUQ and SUS                                                                        & Survey             & Survey Gizmo (Computer based Survey) from IBM employees.                                                                               & Questionairre values between CSUQ, SUS, UMUX is valid and consistent.                                                                                                       & All indicator were designed to measure the same thing: `perceived usability'.                                                                                                                                                                                                                                                                                \\
+    4. & The Effect of Cognitive UX Design on the Elder Generations' Accessibility to the Commercial Space                                                     & Seung Hun Yoo                                                                                                               & 2021 & Analyze and utilize the impact of UX design in commercial space for user with accessibility issues                       & Technical / Survey & Commercial space access is evaluated through UX design expert evaluation, then ethnography session is conducted on 5 fast-food stores. & Accessibility is proved to be influential in attracting user groups                                                                                                         & UX design of space affect the improvement of commercial space accessibility for elder users                                                                                                                                                                                                                                                                  \\
+    5. & Measuring Perceived Usability: SUS, UMUX, and CSUQ Ratings for Four Everyday Products                                                                 & James R. Lewis                                                                                                              & 2018 & Investigate SUS, UMUX and CSUQ in Excel, Word, Amazon and Gmail                                                          & Survey             & Survey Gizmo (Computer based Survey) on the said products from IBM employees, each presented CSUQ, SUS and UMUX in different order     & SUS, UMUX and CSUQ is reliable, Amazon getting highest perceived usability followed by Word, Gmail then Excel                                                               & With exception of Excel, SUS mean for everyday product were consistent. SUS, CSUQ and UMUX are measuring the same thing, presumably, perceived usability.                                                                                                                                                                                                    \\
+    6. & A Pilot Study on Extending the SUS Survey: Early Results                                                                                              & Samantha B. Harper, Stephen L. Dorton                                                                                       & 2021 & Investigate the practical value of extending SUS survey                                                                  & Survey             & SUS-extended surveys from 4 different programs                                                                                         & Majority agreed on `I would like to change modifications', mean word count is 36 words with \(\sigma = 37\). Subjectivity is more apparent.                                 & Subjectivity is inversely correlated to the desire to modify the system, as well as the word count.                                                                                                                                                                                                                                                          \\
+    7. & Is the LITE version of the usability metric for user experience (UMUX-LITE) a reliable tool to support rapid assessment of new healthcare technology? & Simone Borsci, Peter Buckle, Simon Walne                                                                                    & 2019 & Ascertain the reliability of UMUX-LITE and its relationship with product recommendation scores (Net Promoter Score, NPS) & Survey             & 120 different satisfaction level via UMUX-LITE on 6 different point-of-care products at different development stages                   & UMUX-LITE is reliable and have strong correlation with NPS\@; Product development level did not affect UMUX-LITE                                                            & Practitioner may apply UMUX-LITE alone or in accordance with NPS to investigate product quality.                                                                                                                                                                                                                                                             \\
+    8. & Item benchmarks for the system usability scale                                                                                                        & James R. Lewis, Jeff Sauro                                                                                                  & 2018 & Determining guidance on selecting appropriate value of SUS                                                               & Review             & 166 unpublished industrial usability studies and surveys, scores from 11855 individual SUS questionnaires                              & Regression are statistically significant \(( p < .01 )\). Odd numbered items is desirable for observed means to be greater than target's                                    & SUS is a valuable tool for usability and UX practitioners / researchers. Regression equation were developed to compute benchmark for SUS items                                                                                                                                                                                                               \\
+    9. & The Chatbot Usability Scale: the Design and Pilot of a Usability Scale for Interaction with AI-Based Conversational Agents                            & Simone Borsci, Alessio Malizia, Martin Schmettow, Frank van der Velde, Gunay Tariverdiyeva, Divyaa Balaji, Alan Chamberlain & 2021 & Testing a known UIUX tools for chatbots / conversational agents to assess an user's satisfaction                         & Survey             & 4 studies of systematic literature review, 141 experts and novices participants in survey, focus group session                         & Diagnostic tool in the form of checklist (BOT-Check) as welll as a 15 item questionnaire (BOT Usability Scale) which is reliable.                                           & Despite psychometric properties, BOT Usability scale requires further testing and validation                                                                                                                                                                                                                                                                 \\
+    \bottomrule
+  \end{longtable}
+\end{landscape}
+
+\end{document}
+

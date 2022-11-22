@@ -1,0 +1,313 @@
+\documentclass[
+  11pt, % 10pt - 12pt
+  %letterpaper
+  %indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{amssymb} % Math symbols!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+% https://castel.dev/post/lecture-notes-2/#including-inkscape-figures-in-a-latex-document
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./graphics/}{#1.pdf_tex}
+}
+
+\newcommand{\ipAddress}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+% ! CUSTOM - LST Preset
+\lstset{
+    language=SQL,
+    frame=single, % Frames
+    showstringspaces=false, % Don't put marks in string spaces
+    numbers=left, % Line numbers on left
+    numberstyle=\tiny, % Line numbers styling
+    breaklines,
+    basicstyle=\fontfamily{cmtt}\selectfont\small,
+    columns=fullflexible,
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{Apr 28th, 2022}
+% Assignment title
+\title{Mid-Semester Exam Answer}
+
+% Course details
+\class{Basic Statistics (STAT6171)}
+\professor{Ms.\ Diah Wihardini}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{Question 1 --- Question Statement}
+\begin{problem}
+The results of the total test scores of 60 participants as new employees of a hardware company are as follows:
+\medskip
+
+\begin{center}
+  \begin{tabular}{| c c c c c c |}
+    \toprule
+    120 & 165 & 180 & 200 & 212 & 232 \\
+    120 & 170 & 182 & 200 & 212 & 232 \\
+    125 & 172 & 185 & 200 & 215 & 235 \\
+    130 & 175 & 185 & 202 & 215 & 235 \\
+    140 & 175 & 185 & 205 & 222 & 235 \\
+    145 & 180 & 190 & 205 & 225 & 240 \\
+    145 & 180 & 190 & 205 & 230 & 240 \\
+    150 & 180 & 190 & 205 & 230 & 245 \\
+    160 & 180 & 200 & 210 & 232 & 250 \\
+    160 & 180 & 200 & 210 & 232 & 250 \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+\end{problem}
+
+\subsection*{Question 1a}
+
+\begin{problem}
+From these data, determine the mean, variance, Quartile-1 (Q1), Quartile-3 (Q3) and quartile (IQR)
+\end{problem}
+
+\subsubsection*{Mean}
+
+A data's mean is the average of all the data points. The mean is calculated by the following formula:
+
+\begin{equation}
+  \text{mean} = \frac{\text{sum of data}}{\text{number of data}} = \frac{\sum_{i=1}^{n} x_i}{n}
+\end{equation}
+
+For this data. The sum of all data equals to \(11700\). Dividing the sum by the number of data yields the result of \(\frac{11700}{60} = \textbf{195}\).
+
+\subsubsection*{Quartiles}
+
+Quartiles are the value of sorted data when divided into four equal parts. The first quartile is the 25th percentile, the second quartile is the 50th percentile, and the third quartile is the 75th percentile. With \(N = 60\), the lower quartile will be \( Q_1 = (60 + 1) \times \frac{1}{4} = \textbf{15.25}\text{'th term} \) and the upper quartile will be \( Q_3 = 3(60 + 1) \times \frac{3}{4} = \textbf{45.75}\text{th term} \).
+
+\medskip
+
+To get the quartile of the data, we need to sort the data first. The following is the data when sorted (left to right, then down). Highlighted are the significant number.
+
+\begin{center}
+  \begin{tabular}{| c c c c c c |}
+    \toprule
+    120 & 120 & 125          & 130          & 140 & 145 \\
+    145 & 150 & 160          & 160          & 165 & 170 \\
+    172 & 175 & \textbf{175} & \textbf{180} & 180 & 180 \\
+    180 & 180 & 180          & 182          & 185 & 185 \\
+    185 & 190 & 190          & 190          & 200 & 200 \\
+    200 & 200 & 200          & 202          & 205 & 205 \\
+    205 & 205 & 210          & 210          & 212 & 212 \\
+    215 & 215 & \textbf{222} & \textbf{225} & 230 & 230 \\
+    232 & 232 & 232          & 232          & 235 & 235 \\
+    235 & 240 & 240          & 245          & 250 & 250 \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\medskip
+
+The first pair of the highlighted data is the location of the first quartile. Calculated, the first quartile is \(Q_1 = 175 + 0.25 \times (180 - 175) = \textbf{176.25}\).
+
+The last pair of the highlighted data is the location of the third quartile. Calculated, the third quartile is \(Q_3 = 222 + 0.75 \times (225 - 222) = \textbf{224.25}\).
+
+The inter-quartile range is calculated by \(Q_3 - Q_1\). Calculated, the IQR for this data is \(224.25 - 176.25 = \textbf{48}\).
+
+\subsection*{Question 1b}
+
+\begin{problem}
+Participants are categorized as having quite diverse abilities, if the coefficient of variation scores more than 15\%. Based on the test scores, do participants have various abilities?
+\end{problem}
+
+The coefficient of variation (\(CV\)) is simply defined by \( CV = \frac{\sigma}{\mu} \cdot 100\% \), where \( \sigma \) is the standard deviation and \( \mu \) is the mean of the data. By previous answer, the mean of the data is \( \mu = 195 \). The standard deviation is devined by the following formula:
+
+\begin{equation}
+  \sigma = \sqrt{\frac{\sum_{i=1}^{n} {(x_i - \mu)}^2}{n}}
+\end{equation}
+
+Pluging in into the formula, the standard deviation of the data is \( \sigma = \sqrt{\frac{66980}{60}} \approx 33.4115 \). By definition, \textbf{the participant does have various abilities}.
+
+\bigskip
+
+P.S., the placement of comma (,) in the question have made me wonder about the meaning of the question for several hours. Please double check the question!
+
+\subsection*{Question 1c}
+
+\begin{problem}
+Participants are classified according to the following criteria:
+\begin{enumerate}[Group I:]
+  \item if the score is less than the mean value – (0.5 x IQR)
+  \item if the score is between mean – (0.5 x IQR) to (mean + (0.5 x IQR))
+  \item if the score is more than the mean + (0.5 x IQR)
+\end{enumerate}
+Count the number of participants from each group and visualize.
+\end{problem}
+
+\subsubsection*{Group I}
+
+When calculated, the borderline of the score is the following:
+
+\[ \bar{x} - (0.5 \cdot \text{IQR}) = 195 - (0.5 \cdot 48 ) = \textbf{171} \]
+
+There are \textbf{12 participants} who fits in the group.
+
+\subsubsection*{Group II}
+
+When calculated, participants fit in the group if and only if
+
+\begin{align*}
+  \bar{x} - (0.5 \cdot \text{IQR}) > & X \ge \bar{x} + (0.5 \cdot \text{IQR}) \\
+  195 - (0.5 \cdot 48 ) >            & X \ge 195 + (0.5 \cdot 48)             \\
+  171 >                              & X \ge 219                              \\
+\end{align*}
+
+There are \textbf{32 participants} who fits in the group.
+
+\subsubsection*{Group III}
+
+When calculated, participants fit in the group if and only if
+
+\begin{align*}
+  X & > \bar{x} + (0.5 \cdot \text{IQR}) \\
+  X & > 195 + (0.5 \cdot 48)             \\
+  X & > 219
+\end{align*}
+
+There are \textbf{22 participants} who fits in the group.
+
+\subsection*{Question 1d}
+\begin{problem}
+The company will continue the interview for the participant who has the highest score of 25\%. What is the participant's score to continue the process to the interview stage?
+\end{problem}
+
+The highest score of 25\% is equal to the first quartile of the data, which is answered in Question 1a. So, the minimum participant's score to continue to the interview stage is \(Q_1 = \textbf{176.25}\).
+
+% -----------------------------------
+
+\section*{Question 2 --- Question Statement}
+
+\begin{problem}
+A mango fruit processing factory that uses robots to sort fruit based on fruit weight. Based on
+previous information, mango fruit weight (\(X\)) has a normal distribution with an average value of = 300 grams and a standard deviation of = 100 grams. The robot is programmed to be able to separate the weight of mangoes with the following criteria:
+
+\medskip
+
+\begin{itemize}
+  \item Fruit quality A, if \( X < \mu - \sigma \)
+  \item Fruit quality B, if \( \mu - \sigma < X < \mu + 0.5 \)
+  \item Fruit quality C, if \( X > \mu + 0.5 \)
+\end{itemize}
+\end{problem}
+
+\subsection*{Question 2a}
+\begin{problem}
+How much (in percentage) of mangoes that are more than 450 grams?
+\end{problem}
+
+\begin{align*}
+  P (X>450) & = P(X - \mu > 450 - 300)     \\
+            & = P(Z > \frac{450-300}{100}) \\
+            & = P(Z > 1.5)                 \\
+            & = 0.0668                     \\
+\end{align*}
+
+The percentage of mangoes that are more than 450 grams is \( \approx \textbf{6.68\%} \).
+
+\subsection*{Question 2b}
+\begin{problem}
+If the 10 percent of the lightest fruit will be made into juice products, what is the weight limit for mangoes that will be made into juice?
+\end{problem}
+
+\begin{align*}
+  P (0.1) & = P(Z > X)            \\
+          & = P(Z > -1.28)        \\
+  \\
+  -1.28   & = \frac{X - 300}{100} \\
+  X       & =172
+\end{align*}
+
+So the weight limit of the fruit between light fruit and heavy fruit is \textbf{approximately 172 grams}.
+
+
+\subsection*{Question 2c}
+\begin{problem}
+If at any time there are 1000 mangoes available, how many of each are of quality A, B and C\@?
+\end{problem}
+
+\subsubsection*{Quality A}
+
+\begin{align*}
+  X & < \mu - \sigma \\
+  X & < 300 - 100    \\
+  X & < 200          \\
+\end{align*}
+\begin{align*}
+  P(X < 200) & = P ( X - \mu < 200 - 300)                             \\
+             & = P ( \frac{X - \mu}{\sigma} < \frac{200 - 300}{100} ) \\
+             & = P ( Z < -1 )                                         \\
+             & = 0.1587                                               \\
+\end{align*}
+
+There are approximately 15.87\% of mangoes that fits in the group. If there are 1000 mangoes available, there are approximately \textbf{159 mangoes} that fits in the group.
+
+\subsubsection*{Quality B}
+
+\begin{align*}
+  \mu - \sigma < & X < \mu + 0.5 \\
+  300 - 100    < & X < 300 + 0.5 \\
+  200          < & X < 300.5     \\
+\end{align*}
+\begin{align*}
+  P(200 < X < 300.5) & = P (200 - 300 < X - \mu < 300.5 - 300)                                    \\
+                     & = P (\frac{200-300}{100} < \frac{X-\mu}{\sigma} < \frac{300.5 - 300}{100}) \\
+                     & = P (-1 < Z < -0.01)                                                       \\
+                     & = 0.03433
+\end{align*}
+
+The area probability of the said statement 0.3433. If there are 1000 mangoes available, there are approximately \textbf{343 mangoes} that fits in the group.
+
+\subsubsection*{Quality C}
+\begin{align*}
+  X & > \mu + 0.5 \\
+  X & > 300 + 0.5 \\
+  X & > 300.5     \\
+\end{align*}
+\begin{align*}
+  Z    & = \frac{x - \mu}{\sigma}  \\
+  Z    & = \frac{300.5 - 300}{100} \\
+  Z    & = 0.01                    \\
+  P( Z & > 0.01)  = 0.498
+\end{align*}
+
+The area probability of having mangoes that weigh more than 300.5 grams is \( 0.498 = 49.8\% \). If there are 1000 mangoes available, there are approximately \textbf{498 mangoes} that fits in the group.
+
+\end{document}
+

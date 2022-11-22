@@ -1,0 +1,434 @@
+\documentclass[
+  11pt, % 10pt - 12pt
+  %letterpaper
+  %indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+% https://castel.dev/post/lecture-notes-2/#including-inkscape-figures-in-a-latex-document
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+% Pseudocodes yay
+\usepackage[english,ruled]{algorithm2e}
+
+\usepackage{hyperref} % Required for hyperlinks
+
+\usepackage[]{svg}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./graphics/}{#1.pdf_tex}
+}
+
+
+\newcommand{\ipAddress}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+\svgsetup{inkscape=no}
+
+% ! CUSTOM - LST Preset
+\lstset{
+    language=SQL,
+    frame=single, % Frames
+    showstringspaces=false, % Don't put marks in string spaces
+    numbers=left, % Line numbers on left
+    numberstyle=\tiny, % Line numbers styling
+    breaklines,
+    basicstyle=\fontfamily{cmtt}\selectfont\small,
+    columns=fullflexible,
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{July 11th, 2022}
+% Assignment title
+\title{Final Semester Exam Answer}
+
+% Course details
+\class{Software Engineering (COMP6640)}
+\professor{Ms.\ Zulfany Erlisa Rasjid}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+
+\section*{Problem Statement}
+
+\begin{problem}
+During lunch or dinner time, restaurants are at their busiest time. Usually, people will queue and wait
+until the restaurant has an available table to accommodate customers (on the waiting list). The
+restaurant therefore requested you to design a Queueing System. The priority in his queue is not only
+based on first come first serve, but also highly dependent on the number of seat available at the table.
+For example, suppose the person in the front of the queue requested a table for 4 people and the
+second person in the queue requested for a table for two, and a table becomes available with a
+capacity of 2 people. In this case the table will be assigned the second person in the queue.
+
+\medskip
+
+The following is a sample scenario of the Queueing System:
+\begin{enumerate}[1.]
+  \item A person arrives at the restaurant and requests a seat. The person enters the number of people at the kiosk available at the restaurant.
+  \item	 If the table is available, the kiosk will print a ticket, containing the table number and number of persons, otherwise, it will print a queue number on the ticket.
+  \item	The person shows the ticket to the waiter who will show you the table.
+  \item	 Once a table is available, a monitor will display the queue number and the available table number.
+\end{enumerate}
+
+\medskip
+
+A table will become available when the waiter has finished cleaning up a table where the customer
+just left. The waiter will update the table as available. Each table has a number and the capacity stored
+in the system.
+
+\medskip
+
+The restaurant itself, because it is always full, does not allow customers to reserve a table.
+The owner of this restaurant requested you to develop this system. By having this system, the waiter's
+job will be more efficient.
+
+\end{problem}
+
+\section*{Question 1}
+
+\begin{problem}
+\begin{enumerate}[a.]
+  \item Develop an algorithm for the table assignment.
+  \item Based on your algorithm, construct a low graph and find the cyclomatic complexity.
+  \item Prepare a test case to test this module
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer 1a}
+
+Reading the problem statement, this problem personally hits home hard as it touches one of the things that I tinker with: I/O scheduler algorithm and network packets scheduler algorithm.
+
+Assuming that we do not care about splitting a larger table into a smaller ones and joining a smaller table into a larger ones, there are a few algorithm that can be implemented where each have different complexity and compromises. For each of these algorithm, lets assume that we store queue in an array \(A\). When a table is free, let \(c\) to be the amount of chairs available at the said table.
+
+\subsubsection*{Service time first}
+
+This is one of the simplest and the most naïve approach to a queue problem:
+
+\begin{quote}
+  Iterate over \(A\) and assign the table to the least-recent entry of the person who queues for the less-than-or-equal-to amount of chair.
+\end{quote}
+
+Applying the said algorithm will yield an almost purely First-In-First-Out (FIFO) system where the only exception is when the only available queue entries are the one which has more people than the available chairs. With that said, this approach is good baseline for a general purpose queueing system of a restaurant.
+
+\subsubsection*{Large group prioritization}
+
+The idea of this is to prioritize the largest group of people first, then fallback to the next largest group and so on. The algorithm is as follows:
+
+\begin{quote}
+  Iterate over \(A\):
+
+  If there exists an entry which queues the same amount of person with the same amount of chair that is just available (\(\exists x \in A: x = c\)), assign the table to the oldest entry of the person who queues for that amount of chair.
+
+  If not then, subtract \(c\) by one and repeat the process until an entry is found (such that \((\exists x \in A: x = (c - n)) \land (n > 0)\)).
+
+  The algorithm won't assign anyone if it doesn't find any entry matching the requirement
+\end{quote}
+
+This algorithm is generally good for large restaurants where big groups often come and are prioritized.
+
+\subsubsection*{Completely fair queueing (CFQ)}
+
+This algorithm is largely inspired by the already existing I/O queueing algorithm under the same name. This approach highlights on the idea that you will have to wait approximately for a similar amount of time as other people before you got seated. The following is the algorithm approach:
+
+\begin{quote}
+  Timestamp every entry in \(A\) based on when they were queued.
+
+  Sort the array in \(A\) by their timestamp; oldest entries first.
+
+  Interate over the sorted array and assign the table to the oldest entry which have \(n_\text{people queued} \leq c\).
+\end{quote}
+
+From the first look, the said approach might be similar to the \textit{Service time first} approach. But, sorting entries by timestamp will alleviate `unfairness' caused by the fact that the available table seats might be inconsistent. I personally love the approach of this algorithm as it is generally completely fair against other people.
+
+\subsubsection*{My choice for this exam}
+
+Since the circumstances of this assignment are quite not specific, I have chosen the \textit{Service time first} approach as it is the baseline of restaurants queueing system where a system with the same approach might have been implemented, though manually without computer assistance.
+
+\medskip
+
+\begin{algorithm}[H]
+  \LinesNumbered{}
+  \SetAlgoVlined{}
+  % \DontPrintSemicolon{}
+
+  \KwData{\(A\) = Queue of people waiting to be seated}
+  \KwData{\(c\) = Newly available table's seat count}
+  \KwResult{\(n\) such that \(A_n\) is the entry to be assigned to a table}
+  \Begin{
+    \tcc{Iterate over \(A\) and find an entry \(\leq c\)}
+    \For{\(x \in A\)}{
+      \If{\(x \leq c\)}{
+        \Return{} index of \(x\)\;
+      }
+    }
+    \tcc{Edge case: No-one is to be assigned a seat}
+    \Return{null}\;
+  }
+
+  \caption{Service time first\label{STF}}
+\end{algorithm}
+
+\medskip
+
+Algorithm~\ref{STF} is the pseudocode for the \textit{Service time first} algorithm. With approximately 6 lines of code, the algorithm is very simple and easy to implement.
+
+\subsection*{Answer 1b}
+
+A flowgraph for the \textit{Service time first} algorithm is shown below:
+
+\begin{figure}[ht]
+  \centering
+  % \def\svgwidth{\columnwidth}
+  \import{./graphics/}{servicetimefirstgraph.pdf_tex}
+  \caption{Flowgraph of the \textit{Service time first} algorithm}
+  \label{fig:stf_graph}
+\end{figure}
+
+
+With this, the cyclometic complexity \(M\) of the algorithm is
+\[
+  \begin{aligned}
+    M & = E - N + 2P        \\
+    M & = 5 - 5 + 2 \cdot 1 \\
+    M & = 2                 \\
+  \end{aligned}
+\]
+
+\subsection*{Answer 1c}
+
+Assuming array indices starts at 0, a test for Algorithm~\ref{STF} would look something like this:
+
+\medskip
+
+\centering
+\begin{tabular}{c c | l}
+  Queue (\(A\))       & Newly cleared table (\(c\)) & \textbf{Expected result (\(n\))} \\
+  \toprule
+  \([]\)              & 8                           & \textit{null}                    \\
+  \([9, 8, 4]\)       & 2                           & \textit{null}                    \\
+  \([2, 8, 2, 3, 5]\) & 5                           & 0                                \\
+  \([3, 6, 5, 9, 2]\) & 2                           & 4                                \\
+  \([8, 4, 5, 2]\)    & 5                           & 1                                \\
+  \([7, 6, 3, 4, 1]\) & 5                           & 2                                \\
+  \([5, 3, 8, 6, 7]\) & 10                          & 0                                \\
+  \bottomrule
+\end{tabular}
+
+\pagebreak
+
+\section*{Question 2}
+
+\begin{problem}
+\begin{enumerate}[a.]
+  \item Identify and describe all the modules and their input/output requirements (with a brief description of each attribute) for this system
+  \item Perform a function point analysis on this project
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer 2a}
+
+For this system, the following would be their modules and their input/output requirements:
+
+\subsubsection*{Point of Sale (POS)}
+
+The POS system usually is the essential part of the restaurant. It is responsible to handle the customer's orders and payments. The POS system is usually responsible for the following:
+
+\begin{enumerate}
+  \item Verification of the customer's payment (via EDC machine, cash drawer, etc.)
+  \item Generating and printing sale receipt and customer bills
+  \item Handling multiple cash registers in arestaurant
+  \item Managing item / food stocks
+\end{enumerate}
+
+\subsubsection*{Order queueing}
+
+This module is usually setup for a mid-high class restaurant or when the restaurant is often very busy. The main interface of this module usually resides in the kitchen. The module would be linked to a POS system where a cook entry is created when a customer orders a food.
+
+\subsubsection*{Seat queue management}
+
+This will be the module that we will be building. Described by the problem statement, the module will be placed outside the restaurant, in a terminal / kiosk where it is the first thing that the customer will see and interact.
+
+\subsubsection*{[Optional] Contactless ordering}
+
+With the pandemic happenning, people have been trying to distance themselves from each other. With this, a new concept of ordering is becoming popular, where a customer can view the menu, order and pay directly from their seat, through their own smartphone. This system is linked with everything, from POS, order queue and seat management. Though, this system is projected to be not common with the pandemic coming to an end.
+
+\subsection*{Answer 2b}
+
+In this system, we will have the following:
+\begin{itemize}
+  \item 1 External input: Kiosk screen
+  \item 2 External output: Kiosk screen and printer
+  \item 1 External inquiries: User input on customer count
+  \item 1 Internal files: Customer queue database
+  \item 1 External interfaces: POS system
+\end{itemize}
+
+The above points will be fed on to the function point formula using a low / simple weighing factor. Assume that we do not have any processing factors. Let \(X\) to be all processing factors and \(TC\) to be the total count factors. The function point for this system will be:
+
+\[
+  \begin{aligned}
+    \text{Function Point} & = TC \cdot (0.65 + 0.01 \cdot \sum X)                                                               \\
+    \text{Function Point} & = ((3 \cdot 1) + (2 \cdot 4) + (1 \cdot 3) + (1 \cdot 7) + (1 \cdot 5)) \cdot (0.65 + 0.01 \cdot 0) \\
+    \text{Function Point} & = 26 \cdot (0.65)                                                                                   \\
+    \text{Function Point} & = 16.90                                                                                             \\
+  \end{aligned}
+\]
+
+\section*{Question 3}
+\begin{problem}
+Perform a Risk Management Analysis for the Software project, including Risk Mitigation, Monitoring and Management.
+\end{problem}
+
+\subsection*{Answer 3}
+
+The following are some risk that might happen when the software has been deployed to production:
+
+\medskip
+
+\footnotesize
+\begin{tabular}{p{0.25\linewidth} p{0.15\linewidth} p{0.16\linewidth} p{0.28\linewidth}}
+  Function \& Failure mode                      & Effect of failure                        & Potential risk           & Mitigation                                                                                        \\
+  \toprule
+  Customer data input: Touchscreen unresponsive & Unable to input customer data to system  & System shutdown          & Temporarily use keyboard and mouse, fallback to manual queue while waiting for screen replacement \\
+  System display: Broken display                & Unable to output customer data to system & System shutdown          & Fallback to manual queue while waiting for a screen replacement                                   \\
+  Data output: Out of receipt paper             & Unable to print queue receipt            & Incomplete functionality & Wait for receipt paper replacement.                                                               \\
+  Data output: Printer malfunction              & Unable to print queue receipt            & System shutdown          & Fallback to manual queue while waiting for a printer replacement                                  \\
+  External connection: POS system disconnected  & Queue won't be updated on table clear    & System shutdown          & Check connection to POS system, restart system, manually call user on table clear                 \\
+  Queue algorithm: Unhandled edge-case          & Halted system                            & System halt              & System restart, notify developer, fallback to use manual input                                    \\
+  \bottomrule
+\end{tabular}
+
+\normalsize
+\medskip
+
+To alleviate all of the above risk proactively, a system test may be performed on a fixed schedule. For example, on system startup, the system may test for touch screen responsiveness, connection to the POS system, as well as checking the printer's ink / toner / laser.
+
+In addition, a costant software monitoring system should be employed that will notify the restaurant for any defects in the system.
+
+\section*{Question 4}
+\begin{problem}
+Suppose the owner has made a new rule and must be included in the system. The rule states that now people must make a reservation when the number of persons exceeds 8. Therefore, when a person asked for a table will be rejected if the number exceeds. The same person, however, is allowed to request 2 tables by clicking the request ticket twice, using the same credentials. At the same time, the waiter requested that for updating the table availability, all the tables should be displayed in the system, and the waiter just needs to click on the table. An example is as described in the diagram below:
+
+\medskip
+
+% \begin{figure}[ht]
+%   \centering
+%   % \def\svgwidth{\columnwidth}
+%   \import{./graphics/}{seatslayout.pdf_tex}
+%   \label{fig:seats}
+% \end{figure}
+
+\medskip
+
+\begin{center}
+  \import{graphics}{seatslayout.pdf_tex}
+\end{center}
+
+\medskip
+
+Write down the SCM Process for this case (assuming the system has not been released) and describe the necessary changes in the SCM Components.
+
+\end{problem}
+
+\subsection*{Answer 4}
+
+Assuming that the system has not been released but is close to the release date, the following will be the SCM Process:
+
+\textit{PS\@: SCM can both mean Supply Chain Management and Source Control Managament. Due to this confusion, I am going to assume SCM means Source Control Management.}
+
+\subsubsection*{Identification}
+
+A proposed design would be made which includes specifications for the system, design / layout of the feature.
+
+\subsubsection*{Version Control}
+
+The standard modern software engineering tasks are using Git to manage source codes. Assuming that we are using GitHub to maintain our Git repository, the following will be the steps to be done when creating a new feature:
+
+\begin{enumerate}
+  \item Create a new issue on the GitHub repository
+  \item (Optionally) Assign the created issue to a milestone
+  \item Create a new branch for the feature
+  \item Make pull requests to the new branch on every commits
+  \item When ready, make a pull request, merging the feature branch to the main branch
+\end{enumerate}
+
+\subsubsection*{Change Control}
+
+In the context of Git, change control are made using pull request / merge request. In the context of this system, as we are using GitHub, all development should be made on each developer's branch / fork. A pull request should be made when a change is to be merged to the main system. In this pull request, people should include all the changes made to the code in the description.
+
+\subsubsection*{Configuration auditing}
+
+When a pull request has been opened, before it is merged, the system should be audited to ensure that the changes are correct. This can be done via a Continuous Integration (CI) system which will run automated test and benchmarks to the system. In addition, the product owner / team leader / stakeholder should test the proposed change and check whether it is up to the specification defined earlier.
+
+\subsubsection*{Status report}
+
+Using GitHub, we may tag a commit in Git and make the said tag a release. For software engineering, a standardized release versioning / numbering should be used (for example, using \href{https://semver.org}{Semantic Versioning}). A release note / changelog should be included on every release. Assuming that we are using a standardized commit convention (for example, Angular standard), a quick changelog may be made automatically by combining commit messages from the latest release to the current release.
+
+\section*{Question 5}
+\begin{problem}
+\begin{enumerate}[a.]
+  \item In question 2, you are asked to perform a Function Point Analysis. Make an assumption on team's capability in terms of function point/person-months and assume the cost in terms of cost/person-months. Based on this assumption, estimate the effort and cost for this project.
+  \item Prepare a schedule for this Project. Make sure to identify the tasks in detail.
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer 5a}
+To make things simpler and faster to develop, we will be developing a system which uses the Web as an interface. The web is very portable and compatible, to the point that it can be run on a credit-card sized computer (Raspberry Pi). Therefore, we can assume that the team have / will have a lot of experience in web development.
+
+In a standard web development environment, an experienced person will do an average of 15 FP per month. With estimated function point of \(16.90\), the project may be done in about 1.5 months by a single full-stack developer. Assuming that we have a 5-man team, the product may be done in 1 to 2 week.
+
+\subsection*{Answer 5b}
+
+Continuing the assumption of having a 5-man team. A week may be defined as follow:
+
+\begin{enumerate}
+  \item Week 1: Core development
+        \begin{enumerate}
+          \item Design and specification creation and finalization
+          \item Environment research (Researching on-site location, POS APIs, extra requirements etc)
+          \item Data persistency design (On-site database, POS database, extra requirements etc)
+          \item Project bootstrapping
+          \item UI Designing and Development
+          \item Algorithm development
+          \item Software testing
+        \end{enumerate}
+
+  \item Week 2: Finalization
+        \begin{enumerate}
+          \item Integration testing
+          \item Bug fixing
+          \item Software ironing
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}

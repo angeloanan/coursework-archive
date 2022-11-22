@@ -1,0 +1,336 @@
+\documentclass[
+  11pt, % 10pt - 12pt
+  %letterpaper
+  %indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+% https://castel.dev/post/lecture-notes-2/#including-inkscape-figures-in-a-latex-document
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+% Pseudocodes yay
+\usepackage[english,ruled]{algorithm2e}
+
+\usepackage[pdfusetitle]{hyperref} % Required for hyperlinks
+
+\usepackage[]{svg}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./graphics/}{#1.pdf_tex}
+}
+
+
+\newcommand{\ipAddress}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+\svgsetup{inkscape=no}
+
+% ! CUSTOM - LST Preset
+\lstset{
+    language=SQL,
+    frame=single, % Frames
+    showstringspaces=false, % Don't put marks in string spaces
+    numbers=left, % Line numbers on left
+    numberstyle=\tiny, % Line numbers styling
+    breaklines,
+    basicstyle=\fontfamily{cmtt}\selectfont\small,
+    columns=fullflexible,
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{July 12th, 2022}
+% Assignment title
+\title{Final Semester Exam Answer}
+
+% Course details
+\class{Multimedia Systems (COMP7084)}
+\professor{Mr.\ Thomas Galih Satria}
+
+\timespent{25h 21m}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{Problem Statement}
+
+\begin{problem}
+We recently heard about the collaboration between Reins Entertainment and Cinta VR to build a virtual reality metaverse world called ReinsLove Horizons. The world of metaverse is starting to become something popular today. Reins, an owner of a game company wants to make some games in the virtual metaverse world, meaning your game will be played in the metaverse network and virtual reality, therefore Reins buys a virtual land in ReinsLove Horizons. Reins has several employees with certain skills in the field of multimedia projects. Reins divided them into teams for several game themes. You were chosen to be the project leader for the game.
+
+\medskip
+
+You are asked to make a \textbf{virtual reality game themed Indonesian culture}.\\
+(NIM ends with \(3\))
+\end{problem}
+
+\section*{Question 1}
+
+\begin{problem}
+Explain what you know about delivering multimedia projects using metaverse?
+\end{problem}
+
+\subsection*{Answer 1}
+
+The `Metaverse' is mainly a buzzword that is used by investors, founders and leaders which describes a potential future of what a `virtual world' would look like. It is largely popularized by the recent movie `Ready Player One', where they depict the main character to be doing actions on the `Metaverse'. As someone who have first hand interaction with what is supossed to be the metaverse (mainly through an almost daily usage of VRChat), I can say that the metaverse is a very interesting place.
+
+The first thing to know is that the metaverse is supossed to be open to everyone, without a barrier of entry and without any compromise of privacy. People may start an unlimited amount of `identity' (usually, accounts) without any restriction or punishments. This also means that people may be as private or as revealing about their real life identity as they want. They may act like themselves in real life, roleplay to be another personality or even troll other people without any restriction.
+
+A company has renamed themselves to be called `Meta' and has shifted their focus to be on the `Metaverse'. They have acquired one of the lead hardware developer on Head-Mounted Display devices (usually know as a Virtual Reality headset), Oculus, and have developed one of the cheapest virtual reality headsets, while being the most bang-for-the-buck in terms of features.
+
+With this, there have been concerns and compromises that tickles the mind of the people who are passionate on bringing the metaverse. The company has essentially lowered the bar of entry to the metaverse by developing affordable headsets. But the company has also locked the said headset behind an authentication wall, that is a Facebook account login. With a past history of anti-trust lawsuits against Facebook, it is pretty unclear whether the company is trustable with our data. There has been several cases where people have essentially lost the access to the metaverse because of a Facebook account ban; They may not create another account due to the Facebook Terms of Service.
+
+People of the metaverse do not want Facebook, nor any corporate entity, to be the leader of the metaverse, such that it has been almost unanimously agreed that the following is the rule of metaverse:
+\begin{enumerate}[\hspace{1\parindent}Rule \#1:]
+  \item There is only one Metaverse.
+  \item The Metaverse is for everyone.
+  \item Nobody controls the Metaverse.
+  \item The Metaverse is open.
+  \item The Metaverse is hardware-independent.
+  \item The Metaverse is a Network.
+  \item The Metaverse is the Internet.
+\end{enumerate}
+
+\section*{Question 2}
+
+\begin{problem}
+Assemble a multimedia project team with various skills, determine the number of teams, and job names and explain the duties of each job!
+\end{problem}
+
+\subsection*{Answer 2}
+
+Excluding administrative / leading roles, the team count and the person count is highly independent on how much budget or funding the project will get, though assuming that we have 40 people to spare, the following will be a rough estimate on the role of people and team:
+
+
+\subsubsection*{Content Writer} 5 people - Story writing, script writing, etc.
+
+\subsubsection*{Game Designer} 2 people - Engineers who design of the game on a high level, usually works closely with Content writer and Game engineer.
+
+\subsubsection*{Game Engineer} 15 people - Develops the game codebase on a low level
+
+\subsubsection*{General Engineer} 5 people - Develops internal tools and other software that is not related to the game (i.e, marketing website, game analytics, etc).
+
+\subsubsection*{Technical Artist / 3D Artist / Foley artist} 8 people - Creates the graphics / audio for the game (including world design, interface design, etc).
+
+\subsubsection*{Marketing / Community Management} 5 people - Handles the marketing for the game, generating hype and taking care of the game's community.
+
+\pagebreak
+
+\section*{Question 3}
+
+\begin{problem}
+Make a planning table for making the game that contains stages of activity, processing time, costs, and human resource allocation in detail that makes the game successful!
+\end{problem}
+
+\subsection*{Answer 3}
+
+The following is a rough estimate on a planning table for the game's development:
+
+\begin{figure}[ht]
+  \centering
+  \import{graphics}{calendar.pdf_tex}
+  \caption{Planning table for the development of the game}
+\end{figure}
+
+
+
+\section*{Question 4}
+
+\begin{problem}
+The game that you make requires contents that in terms of copyright, must be ensured that it is legal and does not violate the law. Determine the type of copyright you choose which ensures the company can use the content freely, explain the type of copyright that you choose!
+\end{problem}
+
+\subsection*{Answer 4}
+
+For this project, if not made in-house, we will be purchasing assets which have a commercial license. If the assets are open (i.e, using Creative Commons license), we will be crediting the use of them on a special page of the game.
+
+For every open source code that we use, we will check whether derivative work and commercial use is allowed on the license. Other than that, we will be looking for commercial licenses on source code. A proper credit to all libraries used will also be added to a section in the game. For non-open source code that we write, we will be using a proprietary license where non-employees are not allowed to copy the code, essentially not allowing outsiders to make derivative works from our codebase via reverse engineering.
+
+
+
+\section*{Question 5}
+
+\begin{problem}
+Your game also requires talent from minors whose recordings will be used in the game. Design a Model Release Form for minors!
+\end{problem}
+
+\subsection*{Answer 5}
+
+Appended with this document is a release form for minor models. Please note that I am not a lawyer; The document should be checked first by a lawyer to ensure that it is legal and free from any loophole.
+
+\section*{Question 6}
+\begin{problem}
+Make a storyboard of the game according to the specified theme (minimum 4 storyboards) complete with an explanation of each element contained in it.
+\end{problem}
+
+\subsection*{Answer 6}
+The following are the description of the storyboard of the game (All storyboards are appended to the end of this document):
+
+\subsubsection*{Storyboard 1: Story Introduction}
+
+This storyboard consists of a short introduction to the game: A player is washed ashore in some part of rural Indonesia after an accident on a boat trip. The game is a realistic simulation and recreation of an Indonesian island, where the player can explore the island and interact with the environment.
+
+% TODO:
+
+\subsubsection*{Storyboard 2: Environment Interaction --- Resource gathering}
+
+This storyboard introduces how resources may be collected and used in the game. In short, the world is open and regenerating on a daily basis. The player can interact with the environment and collect resources freely.
+
+% TODO:
+
+\subsubsection*{Storyboard 3: Environment Interaction --- Private space}
+
+This storyboard introduces how resources may be used in the game. We will have plots on the worlds that may be reserved to a player. Player may build their own creation (living space, work environment, storage, etc) on their own plot.
+
+% TODO:
+
+\subsubsection*{Storyboard 4: Cultural Exchange}
+
+Along with the open world environment, the player will be introduced to the local indonesian culture. They may be asked to cook Indonesian meals, build Indonesian style houses, and learn about the local culture, participate in \textit{gotong royong}, etc. A recurring calendar event may happen where the player will be asked to participate in the said cultural exchange.
+
+% TODO:
+
+\pagebreak
+\section*{Question 7}
+\begin{problem}
+Make a user interface design of the game (minimum 4 designs)!
+\end{problem}
+
+\subsection*{Answer 7}
+This game will be primarily designed around PC VR where the user are expected to stand up and have a minimal of 1.5m free space around them. A 6DOF Headset is expected to play this game. While a finger tracking controller (i.e. Valve Index controller/ Lucas VRTech's VR Haptic Gloves) will be useful, it is not required for this game. The game will not have a first party support for full-body-tracking.
+
+Most of the UI for this game will be designed around the 3DOF controller (Roll, Pitch, Yaw) as it is more comfortable and more familiar to users. The size of the UI also matters, as the bigger the UI, the more that the user will need to move their head. We are targeting so that the interface element is not far away from the user's head while it being fully visible at a glance, without needing to move the head or utilizing peripheral vision.
+
+As one of the best practices, users will be able to point on the interface using the controller. As a result of this, a pointer (in a form of a laser) will be rendered from the controller's end to guide user's selection when pointing. In addition, user will also be able to select the interface elements using the controller's joystick (though with precedence on pointing). Though, this function will be replaced to scroll a scrollable when the pointed item is scrollable.
+
+In this mockup, icon designs are taken from \href{https://material.google.com}{Google's Material Design} for consistency. \href{https://www.figma.com/file/aCsiOhylBa49E2gFfjMchG}{All designs are designed using Figma and are accessible by clicking here} (or using the following link: https://www.figma.com/file/aCsiOhylBa49E2gFfjMchG).
+
+\subsubsection*{Player inventory}
+
+The following will be the design for the player's inventory (Best viewed in Figma).
+
+\begin{figure}[ht]
+  \centering
+  \def\svgwidth{0.55\linewidth}
+  \import{graphics}{inventory.pdf_tex}
+  \caption{Design for the game's inventory}
+\end{figure}
+
+The UI will be shown aside from the player's center view. The idea is that, the player will have a choice to open / close their inventory to interact with the items that they have. We do not want the UI to gather the main focus of the player, rather the secondary focus.
+
+When an item is selected, a menu will pop up, describing the action that is available by the player. The menu will be scrollable both manually (using the controllers to swipe the menu) and using the joysticks. Items should be draggable in the case of the user wanting to rearrange / dispose any item.
+
+\subsubsection*{Quest log}
+
+The following will be the design for the player's quest log (Best viewed in Figma):
+
+\begin{figure}[ht]
+  \centering
+  \def\svgwidth{\linewidth}
+  \import{graphics}{quest.pdf_tex}
+  \caption{Design for the game's quest log}
+\end{figure}
+
+When shown, the UI will span over the center of the user's view as the panel's purpose is information display. The quest panel wont be opened that often by players because a HUD for a selected quest will always be shown on normal gameplay.
+
+The left side of the panel is the list of available quests to be done by the player. A quest which contributes to the main storyline of the game will have an exclamation point next to the quest title. An educational quest that serves as a `tutorial' will have a school symbol displayed next to the quest title. Furthermore, side quests wont have any icons next to them.
+
+\subsubsection*{Unobtrusive UI\@: Watch Face}
+
+With immersion as a highlight, we want to make the UI of the game unobtrusive. That said, we will have a watch face that will be shown when the user raises their hand, similar on how we check our watch in real life. Similar to a real-life smart watch, the goal of this watch is to show essential information to the user. The following will be the UI of the watch (Best viewed in Figma):
+
+\begin{figure}[!ht]
+  \centering
+  \def\svgwidth{0.37\linewidth}
+  \import{graphics}{watch.pdf_tex}
+  \caption{Design for the player's watch display}
+\end{figure}
+
+The watch will show the time of the world along with any notifications that the user receives. In addition, the watch will also be the main interface to check their virtual health, hunger and energy. It will also show the user's level along with how much xp until a level up. Below that element, it shows how much inventory space the user has left and the main storyline quest that the user is currently on. Finally, when the user is wielding / using an item, the said item will be shown on the bottom left corner of the watch.
+
+\subsubsection*{Accessibility: Closed captioning}
+
+While having immersion is a highlight, we also want to make the game accessible to users with physical / mental disabilities. This is where closed captioning comes in. Closed captioning is a way to communicate information to users with disabilities. The following will be the design for the closed captioning system (Best viewed in Figma):
+
+\begin{figure}[!ht]
+  \centering
+  \def\svgwidth{0.8\linewidth}
+  \import{graphics}{cc.pdf_tex}
+  \caption{Design for the game's closed captioning system}
+\end{figure}
+
+The closed captioning system will be shown and be `sticked' on the center view of the player. It will show a text box with the text that describes what should be heard by the user. It describes ambient sound effects, such as the sound of the wind, the sound of the water, the sound of the rain, etc. It also describes the player's action, such as the player's movement, the player's interaction with the environment, the player's interaction with the items, etc.
+
+When a dialog between the player is being done, the closed captioning system will be updated accordingly to the dialog. An NPC's line will be highlighted in gold, while the player's line will be highlighted in white. The text will scroll naturally, without the user having to manually scroll.
+
+
+\section*{Question 8}
+
+\begin{problem}
+To create a virtual reality game, determine the authoring tools application, and other required applications!
+\end{problem}
+
+\subsection*{Answer 8}
+
+To make a VR game, a game engine which supports VR as an output needs to be used, if not built. This is the main critical component which any game depends on. Usually, VR game developers have chosen to use the \href{https://unity.com}{Unity game engine} to develop VR games.
+
+In addition to a game engine, designers and 3D artist needs to design the game assets. Usually, this is done in a separate 3D modeling software. Options like \href{https://blender.org}{Blender} is very available; it is free while being powerful enough to the point of cinema movies using it for compositing.
+
+From a management side of things, documentation, task trackers and design tools are also required. For this, the \href{https://workspace.google.com}{Google GSuite (later renamed to Google Workspace)} is a great base to start off of. When further documentations are required (copywriting, planning, marketing), startup companies now uses \href{https://notion.so}{Notion} as an advanced document management system. For Designs, \href{https://figma.com}{Figma} and \href{https://sketch.com}{Sketch} are some of the best tools used for modern User Interface design.
+
+When everything is done, task management tools are required to manage employees' tasks. If what Notion offers is not enough, options such as \href{https://trello.com}{Trello}, \href{https://linear.com}{Linear} and \href{https://todoist.com}{Todoist} are available.
+
+\section*{Question 9}
+
+\begin{problem}
+Is smartphone technology now able to accommodate metaverse? Explain your answer!
+\end{problem}
+
+\subsection*{Answer 9}
+
+While there have been previous attempts at using smartphones as a Head-Mounted Display (HMD) device (Google Cardboard and Google Daydream), it is not immersive enough to be used at a daily basis in the metaverse. One of the main reason is that, smartphone powered HMD does not allow for accurate 6 degrees of freedom of movement (6-DOF) tracking. Smartphones usually have accurate sensor for tracking Pitch, Yaw and Roll tracking, but they do not have acurrate tracking for going left and right, up and down and forward and backward.
+
+In addition, another reason that it is not enough is that conventional smartphones does not have any built-in support for any hand-controller tracking. While the Google Daydream has successfully introduced a TV remote-like controller that can be used to control content, but it does not track the movement of the controller in a way that is meaningful for social VR interaction.
+
+Finally, the thing that kill phone VR the most is the raw performance of a smartphone. Running a Virtual Reality game is really heavy as you are expecting to simulate a 3D world with live physics, controller inputs and other real-world events in real time. To add, a normal 2D game will need to render frames from a single camera, but a VR game will require output from 2 cameras (one for the left eye and one for the right eye) at the same time. That, with a baseline of 90 frames per second that a device will need to update their screen to alleviate motion-sickness, it is not possible for a smartphone to accomodate the metaverse.
+
+Though, with all of these problems, the HMD manufacturer Oculus has developed a VR headset that took care of the above problems. Running a heavily modified version of Android, along with a VR optimized processor, VR optimized graphics processor, better 6-DOF trackers, 4 inside-out tracking cameras and custom controllers, the Oculus Quest 2 (later rebranded as the Meta Quest 2) is a very affordable VR headset that is built on top of smartphone technology. Though still, everything software-wise must still be downgraded to use lower polygons and lower resolution textures.
+
+\medskip
+
+In short, technically yes, practically \textbf{no.}
+
+\newpage
+\includepdf[]{graphics/Consent Form.pdf}
+\newpage
+
+\end{document}
+
+

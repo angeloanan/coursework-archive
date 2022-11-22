@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 public class Main {
     private static final Scanner stdin = new Scanner(System.in);
-    private static final HashMap<String, Animal> AnimalStore = new HashMap<>();
+    private static final HashMap<String, Singleton> AnimalStore = new HashMap<>();
 
     public static void main(String[] args) {
-        AnimalStore.put("cow", new Cow());
-        AnimalStore.put("bird", new Bird());
-        AnimalStore.put("snake", new Snake());
+        AnimalStore.put("cow", new CowSingleton());
+        AnimalStore.put("bird", new BirdSingleton());
+        AnimalStore.put("snake", new SnakeSingleton());
 
         while (true) {
             System.out.print("> ");
@@ -27,7 +27,7 @@ public class Main {
             switch (statement.toLowerCase()) {
                 case "query" -> {
                     String queryMethod = splittedInput[2];
-                    Animal selectedAnimal = AnimalStore.get(animalName);
+                    Animal selectedAnimal = (Animal) AnimalStore.get(animalName).getInstance();
 
                     if (selectedAnimal == null) {
                         System.out.println("Invalid animal name!");
@@ -45,9 +45,9 @@ public class Main {
                 case "newanimal" -> {
                     String animalType = splittedInput[2];
                     switch (animalType.toLowerCase()) {
-                        case "cow" -> AnimalStore.put(animalName, new Cow());
-                        case "bird" -> AnimalStore.put(animalName, new Bird());
-                        case "snake" -> AnimalStore.put(animalName, new Snake());
+                        case "cow" -> AnimalStore.put(animalName, new CowSingleton());
+                        case "bird" -> AnimalStore.put(animalName, new BirdSingleton());
+                        case "snake" -> AnimalStore.put(animalName, new SnakeSingleton());
                         default -> System.out.println("Invalid Animal type. Use `cow`, `snake` and `bird`!");
                     }
                 }

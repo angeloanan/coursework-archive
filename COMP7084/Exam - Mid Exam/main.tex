@@ -1,0 +1,197 @@
+\documentclass[
+  11pt, % 10pt - 12pt
+  %letterpaper
+  %indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{amssymb} % Math symbols!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+\usepackage{hyperref}
+
+% https://castel.dev/post/lecture-notes-2/#including-inkscape-figures-in-a-latex-document
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+  \def\svgwidth{\columnwidth}
+  \import{./figures/}{#1.pdf_tex}
+}
+
+\newcommand{\ipAddress}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+% ! CUSTOM - LST Preset
+\lstset{
+  language=SQL,
+  frame=single, % Frames
+  showstringspaces=false, % Don't put marks in string spaces
+  numbers=left, % Line numbers on left
+  numberstyle=\tiny, % Line numbers styling
+  breaklines,
+  basicstyle=\fontfamily{cmtt}\selectfont\small,
+  columns=fullflexible,
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{Apr 26th, 2022}
+% Assignment title
+\title{Mid-Semester Exam Answer}
+
+% Course details
+\class{Multimedia Systems (COMP7084001)}
+\professor{Mr.\ Thomas Galih Satria}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{Case I — Question 1}
+\begin{problem}
+Newly developed airport usually required an information kiosk to helps passenger navigates around airport, but due to pandemic they want to deliver information using apps instead which will deployed on android, iOS and web apps. Answer the following question based on the apps
+
+\medskip
+
+\begin{enumerate}[A.]
+      \item Explain the problems encountered using text across platforms and in different languages.
+      \item Briefly describe the differences between bitmap and vector graphics. Also briefly describe five different graphic elements you might use in the project, for example, the background, buttons, icons, or text. Would you use a vector tool or a bitmap tool for each element? Why?
+      \item Other than text, what other multimedia elements might be added to the apps which should achieve what the apps are going to aim? Mentions and gives elaborate description in connection to elements added not limited to usage and functionality!
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer A}
+
+Cross-platform text is a problem as typefaces might have different stylings and sizes across platforms. In addition, the introduction of different languages with different variants and glyphs (i.e, Arabic script, Cyrillic) makes it difficult to choose a single, consistent typeface to be used. Also, one should consider how the language is being read. Right-To-Left (RTL) languages exists and if used, will reverse the User Interface (UI).
+
+\subsection*{Answer B}
+
+Bitmaps graphics are made from a quantifiable unit of pixels. The said pixels are finite, meaning that the said graphics may be `broken', be blurry and lose their fidelity when it is stretched and zoomed in.
+
+In contrast, vector graphics are essentially mathematical expression and calculations. These equations can be turned into graphics afterwards without losing any details when stretched or zoomed. By the nature of it, vector graphics might need to be simpler in art-style.
+
+\medskip
+
+The following are some different uses of bitmap graphics and vector graphics:
+
+\begin{itemize}
+      \item \textbf{Application Icon Libraries} — Vector
+
+            Icons in icon libraries are made for screens that have a variety of resolutions with different Density Per Inch (DPI) / Pixel Per Inch (PPI). It is natural to use vectors as those can scale infinitely without losing fidelity.
+
+      \item \textbf{Font Family Glyphs} — Vector
+
+            Fonts are made to be versatile and not lose quality when scaled, printed or modified in any way, thus making vector suitable for the use case.
+
+      \item \textbf{UI Elements Design (Buttons, Navigation Bar, etc)} — Vector
+
+            Similar to how Application Icons are designed to be vector, UI elements for applications are also made to be high fidelity across many different screens, making it logical to use vector in this case.
+
+      \item \textbf{Photograph} — Bitmap
+
+            Photographs are made by using digital cameras which have a finite number of sensors in it. It is not possible to capture an `infinite resolution' photograph, so the use of Bitmap is appropriate in this context.
+
+      \item \textbf{Complex Digital Artwork} — Bitmap
+
+            A complex digital artwork might use a specific digital effect which is only available on raster images (example: blur, emboss, textures, etc). In addition, the use of hand-paint tools is so complex that it is not possible to represent it mathematically. In this case, bitmap is more suitable for this use case.
+
+\end{itemize}
+
+\subsection*{Answer C}
+
+As a source of information, the app should also have other elements that will enrich the user experience and make the app more intuitive.
+
+\subsubsection*{Images, Illustration and Diagrams}
+
+Instead of showing a wall of text, illustration that represents the content of the text should be shown. This does not only make the app more inviting to read, but user could also save time by skimming the content of the illustration instead of the text.
+
+\subsubsection*{Maps and Floor Plan}
+
+With how big the airport is, one could simply get lost in the midst of a busy place. To help the user find their way, maps or floor plans of the airport should be shown. Placing an easy to spot indicator of where the user are in real life and in-app along with the orientation of the map is the key of making a map intuitive.
+
+\section*{Case II — Question 2}
+\begin{problem}
+Medstore\texttrademark{} is a drugstore, and like any other drugstore, it's a shop where you can buy medicines, make-up, and other things such as toiletry and face mask. Attracting thousands of locals ever since it was founded.
+
+Due to pandemic situation, although more people are in needs of medication, it's hard to come and it is also a high risk situation for customer to browse inside the store and for Medstore's employee to meet peoples hence Medstore\texttrademark{} are actually taking losses. There is a solution to overcome these problems which is to create order kiosk display, in which the display system is expected to help customers to be able to place orders without having to come inside to Medstore\texttrademark{} and make it easier for Medstore\texttrademark{} to inform you about promos that may be present at certain times
+
+\medskip
+
+\begin{enumerate}[A.]
+      \item Provide a visual design of the Medstore\texttrademark{}'s multimedia system that can help Medstore\texttrademark{} achieve its goals! Give a brief explanation for each design!
+      \item Mention the use of Multimedia elements that match the design of this system. Also provide a reason for using the elements you have selected!
+      \item  For each multimedia element, explain the techniques and types of multimedia elements, including their aim. Example: The text elements used for body text are Sans Serif, Arial 12 Italic!
+      \item  Choose the best delivery method for Medstore\texttrademark{}'s multimedia system and explain why!
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer A}
+
+\href{https://www.figma.com/file/89F7uBeav522DjhLz141Rd/Medstore?node-id=0\%3A1}{These designs has been designed in Figma and is accessible by clicking this text.} If the text is not clickable, you may open it by using the following link:
+
+\medskip
+
+https://www.figma.com/file/89F7uBeav522DjhLz141Rd/Medstore?node-id=0\%3A1
+
+\medskip
+
+When an user opens the system, they will be brought to the Home page. Promotions will be shown on the top using images. Below that, the most common medication that is shopped is listed for quick access. If that is not enough, users can also search for medications via categories listed below it. If they know which medication they're searching for, a search bar is also provided, located just below the navbar.
+
+When user searches for something or click a category shown in the home page, the system will bring them to the Search entry page, where medications will be shown in a list. Each entry will have a picture, a generic name, price per unit along with other restrictions (i.e, prescriptions, etc).
+
+Once the user has selected something, they will navigate to the Medication Display screen where the detailed details of the selected medication will be shown. The user can further select the variants of the medication that they want to order.
+
+\subsection*{Answer B}
+
+The design uses images to display the medications on the shelves. It is also used to convey the promotion of products located at the top of the home screen.
+
+\medskip
+
+To display medications, entries are formed as a card which will show a brief description of the said medication. Each medication also corresponds to an actual page, which will contain the detailed information of the medication.
+
+\medskip
+
+Buttons and Chips are used to select and choose medications and variants. These are essentially the main multimedia element that the user will interact with.
+
+\subsection*{Answer C}
+
+For this design, I've used the \href{https://rsms.me/inter}{Inter font} for both body and headers. The Inter font is a font that is designed for high-definition computer screens. It has 9 different weights ranging from thin (100) to black (900), each with italic counterparts. This makes playful choice between font size and font weight possible.
+
+I've chosen the color Indigo as the primary color of the system. Indigo is a safe color combination that combines the color blue and red. The shades of Indigo that I use are from the \href{https://tailwindcss.com/docs/customizing-colors}{TailwindCSS v2 color scheme}. The 500 variants is the primary variants of every color.
+
+Iconography wise, I am going to be using \href{https://www.carbondesignsystem.com/guidelines/icons/library/}{IBM's Carbon Design Icons} along with \href{https://www.carbondesignsystem.com/guidelines/pictograms/library/}{IBM's Carbon Design Pictograms}. Icons are used to represent objects, ideas or actions while pictograms are used to simplify complex ideas in-a-glance.
+
+The design style that I follow is a personal mix of \href{https://material.io}{Material Design}, \href{https://carbondesignsystem.com}{Carbon Design}, \href{https://design-system.service.gov.uk/}{GOV.UK Design System} and \href{https://vercel.com/design}{Vercel's design system}. I've personally tried to mix them all while designing my own \href{https://angy.gay}{my personal website}.
+
+\subsection*{Answer D}
+
+The designed system is best to be delivered via an application, preferrably a mobile-first / mobile optimized application. Though mobile first, the system should still be able to be used on any device, including tablets and desktops (laptops).
+
+The idea of a mobile-first everything is that people are morelikely to reach their phones first to check anything out. If the user prefers another mean of opening the system, the system should still accomodate and be accessible to those.
+
+\textbf{A web-based application is a good fit for this system}. When using a web-based application, one might scan a QR code / scan an NFC Tag which will bring up the system in a web browser.
+
+\end{document}
