@@ -1,0 +1,331 @@
+\documentclass[
+	10pt, % 10pt - 12pt
+	%letterpaper
+	indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+% https://castel.dev/post/lecture-notes-2/#including-inkscape-figures-in-a-latex-document
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{longtable}
+\usepackage{soul}
+
+\usepackage[none]{hyphenat}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./graphics/}{#1.pdf_tex}
+}
+
+
+\newcommand{\ipAddress}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+% ! CUSTOM - LST Preset
+\lstset{
+    language=SQL,
+    frame=single, % Frames
+    showstringspaces=false, % Don't put marks in string spaces
+    numbers=left, % Line numbers on left
+    numberstyle=\tiny, % Line numbers styling
+    breaklines,
+    basicstyle=\fontfamily{cmtt}\selectfont\small,
+    columns=fullflexible,
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{29 November 2022}
+% Assignment title
+\title{Jawaban Ujian Tengah Semester}
+
+% Course details
+\class{Indonesian (LANG6027001)}
+\professor{Dr.\ Olifia Rombot, S.Sos., S.Pd., M.Pd.}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{A. Analisis Paragraf}
+
+\begin{problem}
+Bacalah artikel di bawah ini. Kemudian, berikan analisis Anda terkait artikel tersebut minimal dalam dua paragraf. Hasil analisis dikaitkan dengan teori “Fungsi dan Kedudukan Bahasa Indonesia”
+\end{problem}
+
+Dalam artikel ini, penulis menyampaikan pentingnya memartabatkan bahasa Indonesia sebagai bahasa resmi di Indonesia dengan menggunakan Uji Kemahiran Berbahasa Indonesia (UKBI). Penulis juga menyebutkan bahwa meskipun ada usaha untuk menginternasionalisasi bahasa Indonesia, namun masih ada kemunduran dalam upaya ini akibat rendahnya kebanggaan terhadap bahasa Indonesia. Penulis ingin menekankan bahwa memiliki sertifikat UKBI harus menjadi kewajiban, terutama untuk bidang vokasi, akademisi, dan profesi di Indonesia. Dengan demikian, hal ini akan mempromosikan dan memartabatkan bahasa Indonesia. Penulis juga menyatakan bahwa mengutamakan bahasa Indonesia dalam berbagai aktivitas keseharian adalah penting agar bahasa Indonesia tidak tergusur oleh bahasa asing.
+
+
+Artikel ini menyebutkan bahwa di Indonesia sendiri bahasa Indonesia mulai ditinggalkan dan ditanggalkan, karena dianggap sebagai simbol ketertinggalan. Oleh karena itu, artikel ini menyarankan agar kita dapat memartabatkan bahasa Indonesia dengan menjadikan kepemilikan UKBI sebagai syarat administratif untuk berbagai jabatan di negara ini. Dengan demikian, kedudukan bahasa Indonesia sebagai bahasa kebangsaan dapat ditingkatkan. Artikel ini menyimpulkan bahwa memartabatkan Bahasa Indonesia dengan pendekatan profesionalisme secara sesegera mungkin menjadi sangat penting bagi kita.
+
+\pagebreak
+\section*{B. Perbaikan Kesalahan Ejaan}
+
+\begin{center}
+	\begin{longtable}{ p{0.33\linewidth} | p{0.33\linewidth} | p{0.33\linewidth}}
+		Soal & Perbaikan & Alasan                                                                                            \\
+		\toprule
+
+		Pulau mursala yang berada di sumatra selatan menjadi lokasi
+		syuting film \textbf{“King Kong”} yang disutradarai Peter Jackson.
+		     &
+		Pulau \hl{Mursala} yang berada di \hl{Sumatra Selatan} menjadi lokasi
+		syuting film \hl{\textit{King Kong}} yang disutradarai Peter Jackson.
+		     &
+		\begin{itemize}
+			\item Huruf pertama pada nama pulau harus ditulis dengan huruf kapital.
+			\item Tulisan cetak miring digunakan untuk menuliskan judul film
+		\end{itemize}                                               \\
+
+		\midrule
+
+		25 peserta terpilih yang melakukan registrasi pada bulan februari akan
+		mendapatkan kupon hadiah senilai Rp. 250.000,- dari PT sejahtera
+		     &
+		\hl{Sebanyak} 25 peserta terpilih yang melakukan registrasi pada bulan \hl{Februari} akan
+		mendapatkan kupon hadiah senilai \hl{Rp 250.000,00} dari \hl{PT Sejahtera}
+		     &
+		\begin{itemize}
+			\item Angka pada awal kalimat terdiri lebih dari satu kata didahului kata seperti \textit{sebanyak}.
+			\item Huruf kapital digunakan pada huruf pertama nama bulan.
+			\item Singkatan mata uang tidak diikuti tanda titik.
+			\item Tanda koma di antara rupiah dan sen.
+			\item Huruf pertama setiap kata dalam nama organisasi harus ditulis dengan huruf kapital.
+		\end{itemize}                  \\
+
+		\midrule
+
+		Kisah Prof.\ Dr Beni Ramadan, SE yang membantu orangtua berjualan hingga
+		mendapat bea siswa ke luar negeri dapat dibaca dalam majalah \textit{Sepenggal Kisah}
+		h.l.m. 12.
+		     &
+		Kisah Prof.\ \hl{Dr.} Beni Ramadan, \hl{S.E.} yang membantu orangtua berjualan hingga
+		mendapat \hl{beasiswa} ke luar negeri dapat dibaca dalam majalah \textit{Sepenggal Kisah}
+		\hl{hlm.} 12.
+		     &
+		\begin{itemize}
+			\item Singkatan gelar diikuti tanda titik di setiap unsur singkatan
+			\item Gabungan kata \textit{beasiswa} harus ditulis dengan serangkai.
+			\item Singkatan yang terdiri atas lebih dari dua huruf yang lazim digunakan dalam dokumen diikuti dengan tanda titik.
+		\end{itemize} \\
+
+		\midrule
+
+		Warung nasi kuning berukuran lima meter itu di dirikan oleh 2 orang kakak
+		beradik disebelah masjid.
+		     &
+		Warung nasi kuning berukuran \hl{5} meter itu \hl{didirikan} oleh \hl{dua} orang \hl{kakak-beradik}
+		disebelah masjid.
+		     &
+		\begin{itemize}
+			\item Angka digunakan untuk menyatakan ukuran.
+			\item Kata \textit{di} pada \textit{didirikan} bukanlah kata depan.
+			\item Bilangan yang dinyatakan dengan satu kata ditulis dengan huruf.
+			\item Tanda hubung digunakan untuk menandai dua unsur yang merupakan satu kesatuan.
+		\end{itemize}                                   \\
+
+		\midrule
+
+		Saat berpidato kita perlu memperhatikan artikulasi, intonasi dan volume suara agar
+		pesan yang di sampaikan dapat di terima dengan baik oleh pendengar.
+		     &
+		Saat berpidato\hl{,} kita perlu memperhatikan artikulasi, intonasi dan volume suara agar
+		pesan yang \hl{disampaikan} dapat \hl{diterima} dengan baik oleh pendengar.
+		     &
+		\begin{itemize}
+			\item Tanda koma dapat digunakan di belakang keterangan untuk menghindari kesalahan pengartian.
+			\item Kata \textit{di} pada \textit{disampaikan} bukanlah kata depan.
+			\item Kata \textit{di} pada \textit{diterima} bukanlah kata depan.
+		\end{itemize}                       \\
+
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\pagebreak
+
+\section*{C. Perbaikan Kesalahan Diksi}
+
+\begin{center}
+	\begin{longtable}{ p{0.33\linewidth} | p{0.33\linewidth} | p{0.33\linewidth}}
+		Soal & Perbaikan & Alasan                                       \\
+		\toprule
+
+		Masa sudah berkumpul sejak jam 10 pagi untuk menyampaikan ketidaksetujuan
+		terhadap sangsi yang diberikan pada wanita yang masih berusia 8 tahun itu.
+		     &
+		Masa sudah berkumpul \hl{dari} jam 10 pagi untuk menyampaikan ketidaksetujuan
+		\hl{kepada} \hl{sanksi} yang diberikan pada \hl{perempuan} yang masih berusia 8 tahun itu.
+		     &
+		\begin{itemize}
+			\item Menggunakan kata idiomatik berdasarkan pasangan yang benar
+			\item Menggunakan kata baku
+			\item Kata \textit{wanita} mempunyai konotasi orang dewasa
+		\end{itemize} \\
+
+		\midrule
+
+		Dengan menterapkan pola makan yang sehat, kita dapat menjaga sistim
+		kekebalan tubuh dan mengkurangi resiko munculnya penyakit kronis.
+		     &
+		Dengan \hl{menerapkan} pola \hl{makan sehat}, kita dapat menjaga \hl{sistem}
+		kekebalan tubuh dan mengkurangi \hl{resiko penyakit kronis}.
+		     &
+		\begin{itemize}
+			\item Pembenaran kata imbuhan
+			\item Membuat kalimat menjadi lebih efektif
+			\item Menggunakan kata baku
+		\end{itemize}                      \\
+
+		\midrule
+
+		Sehubungan kepada peraturan baru dari ketua yayasan, pembesuk dilarang
+		menggendong makanan, baik makanan berat ataupun makanan ringan saat
+		melirik pasien.
+		     &
+		\hl{Berhubungan} \hl{dengan} peraturan baru dari ketua yayasan, pembesuk dilarang
+		menggendong \hl{makanan} saat \hl{mengunjungi} pasien.
+		     &
+		\begin{itemize}
+			\item Menggunakan kata idiomatik berdasarkan pasangan yang benar
+			\item Membuat kalimat menjadi lebih efektif
+		\end{itemize} \\
+
+		\midrule
+
+		Kita bukan hanya dianjurkan untuk berolahraga rutin, tetapi juga harus
+		mengkonsumsi makanan bergizi seimbang yang dapat mensuplai nutrisi
+		sesuai bagi kebutuhan tubuh.
+		     &
+		Kita \hl{tidak hanya} dianjurkan untuk berolahraga rutin, tetapi juga harus
+		\hl{mengonsumsi} makanan bergizi seimbang yang dapat \hl{menyuplai} nutrisi
+		sesuai \hl{dengan} kebutuhan tubuh.
+		     &
+		\begin{itemize}
+			\item Pengunaan kata berimbuhan yang benar
+			\item Menggunakan kata idiomatik berdasarkan pasangan yang benar
+		\end{itemize} \\
+
+		\midrule
+
+		Ibu Eka berurusan dengan meja pengadilan dan menjadi buah bincang
+		masyarakat karena ternyata praktek bidan di rumahnya tidak memiliki surat ijin
+		     &
+		Ibu Eka berurusan dengan \st{meja} pengadilan \hl{sambil} menjadi buah bincang
+		masyarakat karena \st{ternyata} praktek bidan di rumahnya \hl{tanpa} surat ijin
+		     &
+		\begin{itemize}
+			\item Pengunaan kata berimbuhan yang benar
+			\item Menggunakan kata idiomatik berdasarkan pasangan yang benar
+		\end{itemize} \\
+
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\pagebreak
+\section*{D. Perbaikan Kalimat Efektif}
+\begin{center}
+	\begin{longtable}{ p{0.33\linewidth} | p{0.33\linewidth} | p{0.33\linewidth}}
+		Soal                                                                                                   & Perbaikan & Alasan \\
+		\toprule
+
+		Kecelakaan antara truk dan kereta api di Lamongan disebabkan oleh karena sopir
+		truk yang tidak melihat palang pintu ditutup.                                                          &
+		Kecelakaan antara truk dan kereta api di Lamongan disebabkan oleh sopir truk
+		tidak melihat palang pintu tertutup                                                                    &
+		\begin{itemize}
+			\item Melanggar aturan kecermatan karena bermakna ganda
+		\end{itemize}                                                                      \\
+
+		\midrule
+
+		Pengunjung yang membawa telepon genggam harap dimatikan sebelum acara dimulai                          &
+		Sebelum acara dimulai, Pengunjung harap mematikan telepon genggam yang dibawa                          &
+		\begin{itemize}
+			\item Refaktor posisi kata agar menghilangkan kerancuan
+		\end{itemize}                                                                      \\
+
+		\midrule
+
+		Produk terbaru itu kami pomosikan di media sosial selama 1 bulan                                       &
+		Produk terbaru kami dipromosikan di media sosial selama 1 bulan                                        &
+		\begin{itemize}
+			\item Penggunaan kata bermakna sama
+		\end{itemize}                                                                                          \\
+
+		\midrule
+
+		Dari penelitian membuktikan bahwa lidah buaya atau \textit{aloe vera} dapat membantu penyembuhan luka. &
+		Penelitian membuktikan bahwa lidah buaya atau \textit{aloe vera} membantu penyembuhan luka.            &
+		\begin{itemize}
+			\item Membuat kalimat menjadi lebih runtun
+			\item Menghilangkan kata yang tidak diperlukan
+		\end{itemize}                                                                               \\
+
+		\midrule
+
+		Minum air kelapa muda secara rutin dapat mendatangkan banyak manfaat untuk
+		kesehatan seperti perlambat penuaaan, mengatur tekanan darah, dan pencegahan dehidrasi.                &
+		Rutin minum air kelapa muda mendatangkan banyak manfaat kesehatan
+		seperti memperlambah penuaaan, meregulasi tekanan darah, dan pencegahan dehidrasi.                     &
+		\begin{itemize}
+			\item Menghilangkan kata yang tidak diperlukan
+			\item Refaktor posisi kata agar membuat penegasan lebih mantap
+		\end{itemize}                                                               \\
+
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\pagebreak
+\section*{E. Penulisan Paragraf Akademik}
+
+\textbf{Topik}: Bahasa sebagai alat komunikasi antar manusia\\
+\textbf{Fungsi}: Teks eksposisi\\
+\textbf{Letak kalimat utama}: Kalimat akhir\\
+\textbf{Pola pengembangan}: Terbuka
+
+\medskip
+
+\-\hspace{0.5cm} Bahasa memiliki fungsi sebagai alat komunikasi antar manusia.
+Hal ini dapat membantu kita untuk menyampaikan gagasan, membangun hubungan, menciptakan kesadaran, dan mengubah tingkah laku.
+Melalui bahasa, kita dapat menyampaikan informasi, pandangan, dan pengetahuan.
+Bahasa juga dapat digunakan untuk mengekspresikan perspektif tentang konsep-konsep, ide-ide, dan pemikiran-pemikiran baru.
+Namun, bahasa juga memiliki fungsi lainnya, seperti membangun masyarakat dan memperkenalkan budaya.
+Dengan bahasa, kita dapat menyatukan masyarakat melalui perbincangan tentang nilai-nilai dan norma-norma yang berlaku di masyarakat.
+Selain itu, bahasa juga dapat membantu kita untuk mengenal budaya lain dengan membaca, menonton, dan mencariketahui informasi tentang budaya lain.
+Dengan demikian, bahasa memainkan peran penting dalam membangun dan mempertahankan hubungan antar manusia.
+
+
+% \printbibliography[]{}
+
+
+\end{document}

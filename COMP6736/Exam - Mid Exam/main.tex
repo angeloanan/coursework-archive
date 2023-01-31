@@ -1,0 +1,299 @@
+\documentclass[
+	11pt, % 10pt - 12pt
+	%letterpaper
+	indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+% https://castel.dev/post/lecture-notes-2/#including-inkscape-figures-in-a-latex-document
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./graphics/}{#1.pdf_tex}
+}
+
+
+\newcommand{\ipAddress}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+% ! CUSTOM - LST Preset
+\lstset{
+    language=SQL,
+    frame=single, % Frames
+    showstringspaces=false, % Don't put marks in string spaces
+    numbers=left, % Line numbers on left
+    numberstyle=\tiny, % Line numbers styling
+    breaklines,
+    basicstyle=\fontfamily{cmtt}\selectfont\small,
+    columns=fullflexible,
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{Nov 29th, 2022}
+% Assignment title
+\title{Mid Exam Answer}
+
+% Course details
+\class{Distributed Cloud Computing (COMP6736001)}
+\professor{Mr.\ Said Achmad}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{Question 1}
+
+\begin{problem}
+Sebutkan dan jelaskan karakteristik utama dari \textit{sistem cloud computing}.
+\end{problem}
+
+\subsection*{Answer 1}
+
+Ada beberapa karakteristik utama dari sistem cloud computing yang membuat sistem ini menjadi lebih fleksibel dan efisien dibandingkan dengan sistem tradisional. Berikut adalah beberapa karakteristik utama dari sistem cloud computing:
+
+\begin{enumerate}
+	\item \textbf{Self-service}: Pengguna dapat mengakses sistem cloud computing tanpa harus meminta bantuan dari administrator.
+	\item \textbf{On-demand}: Pengguna dapat mengakses sistem cloud computing sesuai dengan permintaan kapan saja, tidak terbatasi oleh jam operasional.
+	\item \textbf{Measured Service}: Sistem penyelenggara akan mengukur penggunaan sistem secara otomatis dan mengenakan biaya pada resource yang hanya dipakai ke pengguna.
+	\item \textbf{Resource Pooling}: Sistem cloud computing dapat memanfaatkan \textit{computing resource} yang ada secara efisien beradaptasi / berbagi dengan banyaknya pengguna (e.g. \textit{Shared CPU}, \textit{Shared Occupancy} 0.5vCPU, etc).
+	\item \textbf{Agile}: Sistem dapat beradaptasi dengan cepat akan permintaan pengguna (\textit{user}) dan atau penggunaan (\textit{usage / load}) yang terdapat pada sistem.
+	\item \textbf{Service Level Agreement (SLA)}: Adanya perjanjian pengguna dengan penyelenggara sistem dalam bentuk SLA yang mengatur tingkat ketersediaan, keandalan, dan kinerja dari sistem. Disini, dapat juga diatur tingkat keamanan, privasi data, standar waktu \textit{system maintenance} dan lain lain.
+\end{enumerate}
+
+\section*{Question 2}
+\begin{problem}
+Sebutkan dan jelaskan teknologi utama dalam \textit{sistem cloud computing}.
+\end{problem}
+
+\subsection*{Answer 2}
+
+Berikut adalah beberapa teknologi utama dalam sistem cloud computing yang membuat sistem ini bisa berjalan dengan lancar:
+
+\begin{enumerate}
+	\item \textbf{High system throughput}: Dengan kemajuan teknologi processor, networking dan memory, (\textit{resource throughput}) menjadi lebih tinggi secara keseluruhan.
+	\item \textbf{Virtualization}: Teknologi virtualisasi memungkinkan penyelenggara untuk membagi sebuah server fisik menjadi beberapa server \textit{`virtual'} lebih kecil yang dapat diakses secara bersamaan. Teknologi ini memungkinkan pengguna untuk membagi \textit{resource} yang ada secara efisien dan dapat diakses secara bersamaan.
+	\item \textbf{Resource Orchestration}: Teknologi ini memungkinkan penyelenggara untuk mengatur dan mengontrol \textit{resource} yang berserakan (\textit{distributed}) menjadi satu secara efisien. Contoh aplikasi orchestration adalah Kubernetes.
+	\item \textbf{Scalability}: Teknologi ini memungkinkan penyelenggara untuk memperluas \textit{resource} yang ada secara horizontal maupun vertikal secara otomatis, tergantung dengan permintaan pengguna.
+\end{enumerate}
+
+\section*{Question 3}
+\begin{problem}
+Apa yang dimaksud dengan \textit{Architectural Model} pada \textit{system model}? Berikan contohnya.
+\end{problem}
+
+\subsection*{Answer 3}
+Model Architectural adalah salah satu klasifikasi model sistem yang menggambarkan bagaimana sebuah sistem dibangun. Spesifik dengan model Architectural, model ini menggarisbawahkan bagaimana sistem tersebut berinteraksi dengan satu sama lain. Beberapa contoh model ini adalah Client-Server model (CS packet, REST / SOAP, game server, etc) dan peer-to-peer model (P2P, BitTorrent, WebTorrent, WebRTC, etc).
+
+
+\section*{Question 4}
+\begin{problem}
+Apa yang dimaksud dengan \textit{Fundamental Model} pada \textit{system model}? Berikan contohnya.
+\end{problem}
+
+\subsection*{Answer 4}
+Mirip seperti Architectural Model, model ini adalah salah satu klasifikasi yang menggambarkan bagaimana sebuah sistem dibangun. Hanya spesifik ke model fundamental, model ini menggarisbawahkan bagaimana sistem tersebut berinteraksi dengan \textit{resource} yang bersifat fundamental yang ada pada sistem.
+
+Beberapa contoh model ini adalah \textit{Resource Sharing Model} (e.g. \textit{Shared CPU}, \textit{Shared Occupancy} 0.5vCPU, etc) dan \textit{Resource Partitioning Model} (e.g. \textit{Dedicated CPU}, \textit{Dedicated Occupancy} 1vCPU, etc).
+
+\section*{Question 5}
+\begin{problem}
+Bagaimana mekanisme \textit{multithreading} pada CPU\@? Sebutkan kekurangan dan kelebihan dari \textit{multithreading}.
+\end{problem}
+
+\subsection*{Answer 5}
+
+Multithreading pada CPU memanfaatkan adanya banyak CPU Core dalam 1 CPU\@. Hal ini berarti bahwa task dapat dilakukan secara bersamaan secara parallel, jika tidak concurrent.
+
+Kelebihan dari multithreading meliputi:
+\begin{itemize}
+	\item \textbf{Performance dan concurrency}: Dengan adanya multithreading, task dapat dilakukan secara bersamaan secara parallel, jika tidak concurrent. Hal ini memungkinkan untuk meningkatkan performa sistem secara keseluruhan.
+	\item \textbf{Akses task secara bersamaan}: Sistem dapat menjalankan task secara bersamaan, sehingga performa dapat lebih cepat
+\end{itemize}
+
+Kekurangan dari multithreading meliputi:
+\begin{itemize}
+	\item \textbf{Synchronization}: Sistem harus memastikan bahwa task yang berjalan bersamaan tidak saling mengganggu satu sama lain.
+	\item \textbf{Memory management}: Programmer harus memastikan bahwa proses yang mengutilisasikan banyak thread secara bersamaan bersifat \textit{thread-safe} dan tidak mengakibatkan \textit{memory leak}. Hal ini dapat dilakukan menggunakan Mutex, Semaphore, Atomic Refereced Counted dan lain-lain.
+\end{itemize}
+\section*{Question 6}
+\begin{problem}
+Jelaskan apa itu virtualisasi dan bagaimana virtualisasi berperan dalam sistem \textit{cloud computing}.
+\end{problem}
+
+\subsection*{Answer 6}
+Virtualisasi adalah sebuah software yang dapat membuat sebuah sistem fisik menjadi lebih dari satu sistem virtual. Virtualisasi memungkinkan penyelenggara untuk membagi sebuah server fisik menjadi beberapa server \textit{`virtual'} lebih kecil yang dapat diakses secara bersamaan. Teknologi ini memungkinkan pengguna untuk membagi \textit{resource} yang ada secara efisien dan dapat diakses secara bersamaan.
+
+Dalam sistem Cloud Computing, teknologi virtualisasi sering digunakan dalam bentuk Virtual Machine (VM), dimana setiap VM akan disewakan. VM ini akan bertindak seperti komputer fisik, mempunyai alokasi CPU, Memory dan storage, dan menjalankan OS sendiri. Biasanya, VM ini akan dijalankan diatas hypervisor, dimana hypervisor akan membagi \textit{resource} dari server fisik ke VM-VM yang ada. Hypervisor ini tidak user-facing; pengguna tidak akan pernah melihat hypervisor ini.
+
+\section*{Question 7}
+\begin{problem}
+Buatlah analisis perbandingan yang membahas kekurangan serta kelebihan dari \textit{Hosted Hypervisor} dan \textit{Bare Metal Hypervisor}.
+\end{problem}
+
+\subsection*{Answer 7}
+
+Native Hypervisor adalah hypervisor yang berinteraksi langsung dengan hardware. Hypervisor ini akan mengakses \textit{resource} dari hardware yang ada, dan membagi \textit{resource} tersebut ke VM-VM yang dimanage oleh Hypervisor itu sendiri.
+
+Hosted Hypervisor adalah hypervisor yang diinstall melalui Operating System. Hypervisor ini akan mengakses \textit{resource} dari hardware melalui OS, dan membagi \textit{resource}. Oleh karena itu, hypervisor ini membutuhkan sistem operasi yang ada untuk berjalan, sehingga membutuhkan overhead yang cukup besar.
+
+Berikut adalah perbandingan antara kedua hypervisor tersebut:
+\begin{itemize}
+	\item \textbf{Overhead}: Karena sifat Native Hypervisor, overhead yang dibutuhkan untuk menjalankan hypervisor ini cukup kecil karena langsung berinteraksi dengan Hardware\@. Sedangkan untuk Hosted Hypervisor, overhead yang dibutuhkan cukup besar karena harus melalui Operating System (OS mungkin dapat memakan processing power yang tidak diperlukan).
+	\item \textbf{User-friendliness}: Untuk pemasangan, Native Hypervisor lebih sulit untuk dipasang karena mungkin diperlukan hardware tersendiri untuk berinteraksi langsung dengan hardware. Pemasangan Hosted Hypervisor bersifat lebih user-friendly oleh karena sistem yang diinstal melalui Operating System (dapat berbentuk installer .msi / .exe)\@.
+	\item \textbf{Security}: Native Hypervisor bersifat lebih aman karena tidak membutuhkan OS untuk berjalan, membuat attack surface lebih kecil. Karena membutuhkan OS untuk berjalan, Hosted Hypervisor dapat dibilang lebih tidak aman karena attack surface yang lebih tinggi (jika OS terambil alih, maka VM akan juga terambil alih).
+\end{itemize}
+
+\section*{Case Study --- Question 1}
+
+\begin{problem}
+Suatu perusahaan Fintech sedang merencanakan pengembangan arsitektur TI yang dimilikinya.
+Saat ini server yang digunakan memiliki jumlah core sebanyak 8 core. Berdasarkan keterangan
+dari tim programmer, aplikasi yang berjalan di server memiliki 60\% kode program yang harus
+dijalankan secara sequential. Anda diminta untuk mempertimbangkan strategi apa yang harus
+dilakukan untuk membuat arsitektur TI perusahaan dapat menjalankan aplikasi dengan lebih
+cepat dan efisien.
+
+\medskip
+
+Berdasarkan kasus diatas tentukanlah,
+
+\medskip
+
+\begin{enumerate}[a.]
+	\item Hitung Speedup Factor dan nilai efisiensinya jika jumlah core ditingkatkan menjadi sesuai dengan 2 digit NIM anda. Jelaskan setiap langkah dan tuliskan proses perhitungannya secara lengkap.
+	\item Berikan rekomendasi jumlah core yang optimal untuk ditambahkan, tentukan nilai Speedup Factor dan nilai efisiensinya, jelaskan mengapa anda merekomendasikan penambahan tersebut.
+\end{enumerate}
+\end{problem}
+
+\subsection*{Case Study: Answer 1a}
+
+\[ \text{Sequential Code} = \alpha = \frac{6}{10} \]
+\[ \text{Speedup} = S = \frac{T}{\alpha T + \frac{(1 - \alpha) T}{n}} \]
+
+NIM ends with 03, reducing processor count to 3 core
+
+\[
+	\begin{aligned}
+		\text{Speedup}_\text{Initial} = S_i & = \frac{1}{0.6 \cdot 1 + \frac{(1 - 0.6) 1}{8}} \approx 1.53846\dots \\
+		\text{Speedup}_\text{NIM}     = S_n & = \frac{1}{0.6 \cdot 1 + \frac{(1 - 0.6) 1}{3}} \approx 1.\bar{36}
+	\end{aligned}
+\]
+
+\[
+	\begin{aligned}
+		\text{Improvement} & = \frac{(S_n - S_i)}{S_i}          \\
+		                   & = \frac{1.3636 - 1.53846}{1.53846} \\
+		                   & \approx -0.11365 = -11.365\%       \\
+	\end{aligned}
+\]
+
+Reducing the processor count to 3 core will result in a 11.365\% slowdown.
+
+\[
+	\begin{aligned}
+		\text{Efficiency} = E & = \frac{T}{\alpha n + (1-\alpha)}  \\
+		                      & = \frac{1}{0.6 \cdot 3 + (1- 0.6)}
+		                      & = 0.\bar{45}
+	\end{aligned}
+\]
+
+Having the processor count to be 3 core, the efficiency of the task is 45\%.
+
+\subsection*{Case Study: Answer 1b}
+
+Full efficiency is achieved when \(E = 1\), which means that the sequential part of the code is executed in a single core, and the parallel part is executed in \(n\) cores.
+
+Though, I will want to have a speedup of at least 1.5. Solving the Speedup equation for number of cores \(n\), we get:
+
+\[
+	\begin{aligned}
+		1.5 & = \frac{1}{0.6 \cdot 1 + \frac{(1-0.6) \cdot 1}{n}} \\
+		n   & = 6
+	\end{aligned}
+\]
+
+So, with this it is best to use upgrade the cpu to a cpu with core count of 6.
+
+\section*{Case Study --- Question 2}
+
+\begin{problem}
+Anda memiliki aplikasi yang berjalan online pada Senin siang. Aplikasi berjalan dan berfungsi
+normal sampai akhirnya terjadi galat pada Jumat siang. Waktu sampai aplikasi mengalami
+kegagalan (time to failure) (atau lamanya waktu aplikasi tersedia online) adalah 96 jam. Tim IT
+menghabiskan waktu dari Jumat siang hingga Senin siang untuk mendiagnosis dan memperbaiki
+aplikasi hingga kembali online. Kemudian hal ini terjadi lagi, aplikasi galat pada Jumat siang dan
+Tim IT memperbaikinya hingga Senin siang untuk kembali online.
+
+\medskip
+
+Berdasarkan kasus diatas tentukanlah,
+
+\medskip
+
+\begin{enumerate}[a.]
+	\item Hitung nilai Availability berdasarkan kasus diatas. Jelaskan setiap langkah dan tuliskan proses perhitungannya secara lengkap.
+	\item Hitung Failure Rate jika aplikasi bersalan selama 14 minggu dan kegagalan sistem terjadi sebanyak 2-digit NIM anda. Jelaskan setiap langkah dan tuliskan proses perhitungannya secara lengkap.
+\end{enumerate}
+\end{problem}
+
+\subsection*{Case Study: Answer 2a}
+
+\begin{itemize}
+	\item Senin siang hingga Jumat siang: 4 full days = 96 hours
+	\item Jumat siang hingga senin siang: 3 full days = 72 hours
+\end{itemize}
+
+\[
+	\begin{aligned}
+		\text{Availability} = A & = \frac{t_{\text{up}}}{t_{\text{up}} + t_{\text{down}}}        \\
+		                        & = \frac{96 \text{ hours}}{96 \text{ hours} + 72 \text{ hours}} \\
+		                        & = \frac{96}{168}                                               \\
+		                        & = \frac{4}{7} \approx 57.142 \%
+	\end{aligned}
+\]
+
+\subsection*{Case Study: Answer 2b}
+
+Assumption:
+
+\begin{itemize}
+	\item \(\text{Failure Count} = f = 3 \text{ times}\)
+	\item Total hours in 14 weeks = \( t = 14 \cdot 7 \cdot 24 = 2352 \text{ hours}\)
+\end{itemize}
+
+\[
+	\begin{aligned}
+		\text{Failure Rate} = FR & = \frac{f}{t}                               \\
+		                         & = \frac{3}{2352} \approx 0.00128 = 0.128 \%
+	\end{aligned}
+\]
+
+\end{document}
