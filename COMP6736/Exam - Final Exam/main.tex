@@ -1,0 +1,256 @@
+\documentclass[
+	11pt, % 10pt - 12pt
+	%letterpaper
+	indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+% https://castel.dev/post/lecture-notes-2/#including-inkscape-figures-in-a-latex-document
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./graphics/}{#1.pdf_tex}
+}
+
+
+\newcommand{\ipAddress}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+% ! CUSTOM - LST Preset
+\lstset{
+    language=SQL,
+    frame=single, % Frames
+    showstringspaces=false, % Don't put marks in string spaces
+    numbers=left, % Line numbers on left
+    numberstyle=\tiny, % Line numbers styling
+    breaklines,
+    basicstyle=\fontfamily{cmtt}\selectfont\small,
+    columns=fullflexible,
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{Feb 3rd, 2023}
+% Assignment title
+\title{Final Exam Answer}
+
+% Course details
+\class{Distributed Cloud Computing (COMP6736001)}
+\professor{Mr.\ Said Achmad}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{Question 1}
+
+\begin{problem}
+Sebutkan dan jelaskan perbedaan mendasar dari arsitektur \textit{monolithic} dan \textit{microservice}, tuliskan kelebihan beserta kekurangan dari masing-masing arsitektur.
+\end{problem}
+
+\subsection*{Answer 1}
+
+Arsitektur \textit{monolithic} dan \textit{microservice} saling bertumpang-belakang.
+
+\subsubsection*{Monolithic}
+
+Arsitektur \textit{Monolithic} adalah arsitektur program yang membangun sebuah sistem dalam satu kesatuan, berhubungan internal secara ketat. Secara natural, arsitektur ini akan bersifat tersekat (\textit{contained}), tersentralisasi dan berdiri sendiri secara independen.
+
+Saat membangun sistem menggunakan arsitektur monolithic, ada beberapa kelebihan dan kekurangan yang harus diperhatikan. Kelebihan dan kekurangan berikut saling bertumpang tindih (\textit{double-edged sword}) dengan arsitektur \textit{microservice}:
+
+\begin{itemize}
+	\item \textbf{Development} --- Oleh karena kode yang satu-kesatuan, proses \textit{development} akan lebih mudah; Tidak perlu memikirkan bagaimana satu sistem berinteraksi dengan sistem lain. Tetapi juga, proses \textit{development} mungkin akan lebih lambat jika terstruktur tidak optimal oleh karena satu kesatuan yang saling berhubungan dengan satu sama lain.
+	\item \textbf{Technology Adoption} --- Jika ada teknologi baru (\textit{programming language}, \textit{framework}, \textit{library}, etc.) yang ingin diadopsi, kemungkinan akan lebih sulit untuk diadopsi oleh karena satu kesatuan yang saling berhubungan dengan satu sama lain, yang mungkin akan mem-efek pada keseluruhan sistem.
+	\item \textbf{Deployment} --- Sistem \textit{monolithic} akan lebih mudah untuk di-\textit{deploy} oleh karena hanya ada perlu satu kesatuan yang perlu di-\textit{deploy}. Tetapi perlu diperhatikan bahwa setiap perubahan yang dilakukan (walaupun hanya 1 baris kode), akan memerlukan proses \textit{deployment} ulang pada seluruh aplikasi.
+	\item \textbf{Reliability} --- Jika terjadi kegagalan pada satu bagian dari sistem yang tidak di-\textit{handle} secara optimal, maka keseluruhan sistem mungkin akan terganggu, sampai pada titik dimana seluruh aplikasi akan terganggu / down.
+	\item \textbf{Scalability} --- Skalabilitas yang mudah dilakukan hanyalah dengan secara vertikal (\textit{Scaling up}). Oleh karena itu, jika ada salah satu komponen sistem yang perlu di-scale, maka seluruh sistem harus di-scale. Sistem \textit{monolithic} akan lebih sulit untuk di-\textit{scale} secara horizontal karena sifatnya yakni \textit{contained} dalam satu kesatuan.
+\end{itemize}
+
+\subsubsection*{Microservice}
+
+Arsitektur \textit{microservice} adalah arsitektur yang membangun sebuah sistem dalam banyak bagian kecil (\textit{micro}) yang saling terpisah. Melawan arsitektur \textit{monolithic}, \textit{service} yang dibangun akan harus bersifat kecil dan independen; masing masing \textit{service} akan memiliki \textit{business logic} dan mungkin \textit{database} tersendiri.
+
+Berikut kelebihan dan kekurangan dari arsitektur \textit{microservice}. Umumnya, kelebihan dan kekurangan dari arsitektur ini akan bertumpang tindih dengan arsitektur \textit{monolithic}:
+
+\begin{itemize}
+	\item \textbf{Development} --- Pada awal mula pembuatan sistem, infrastruktur sistem perlu didesain secara konkret untuk menjamin kecepatan development agar menjadi sesuai dengan standar. Hal ini disebabkan oleh karena banyaknya \textit{service} yang harus dibangun, sehingga proses untuk `menghubungkan' service tersebut menjadi kompleks. Tetapi jika diatur dengan baik, proses \textit{development} akan lebih cepat dan efisien.
+	\item \textbf{Deployment} --- Sifat \textit{microservice} yang kecil dan independen membuat service untuk di-\textit{deploy} secara terpisah satu sama lain. Hal ini akan mendorong teknologi `\textit{continuous deployment}' dimana setiap perubahan yang dilakukan dapat di-\textit{push} secara berlanjutan, kadang 2 sampai 3 kali sehari.
+	\item \textbf{Reliability} --- Karena setiap \textit{service} memiliki \textit{business logic} dan \textit{database} tersendiri, jika terjadi kegagalan pada salah satu \textit{service}, maka hanyalah \textit{service} tersebut yang perlu di-\textit{deploy} ulang (atau \textit{rollback}) menghasilkan sistem yang lebih kokoh dan lebih sulit untuk membuat seluruh aplikasi down.
+	\item \textbf{Scalability} --- Independensi \textit{microservices} memudahkan \textit{service} tersebut untuk di-\textit{scale} secara horizontal dan \textit{on-demand}. Hal ini akan memudahkan sistem untuk menangani permintaan yang meningkat pada waktu tertentu, atau juga pada waktu yang tidak diantisipasi. Tetapi selain itu, perlu diperhatikan bahwa pemecahan \textit{service} yang terlalu kecil akan menyebabkan biaya yang signifikan, bahkan kadang eksponensial oleh karena perlunya banyaknya hal yang perlu disetup pada setiap \textit{service}.
+
+\end{itemize}
+
+
+\section*{Question 2}
+\begin{problem}
+Jelaskan apa yang dimaksud dengan SOA (\textit{System-oriented architecture}), kemudian jelaskan menggunakan kalimat anda sendiri mengenai perbedaan SOA dengan \textit{microservice}.
+\end{problem}
+
+\subsection*{Answer 2}
+
+\textit{System-oriented architecture} adalah sebuah penggambaran dari bagaimana caranya sebuah sistem dibangun menjadi komponen kecil yang dapat dipakai berulang kali di \textit{service} yang berbeda. Hal ini mungkin mirip seperti \textit{microservice}, tetapi \textit{microservice} lebih terfokuskan pada pemecahan sistem monolitik menjadi banya \textit{service} yang saling kecil terpisah. Sedangkan SOA lebih terfokus pada pemecahan interface service agar dapat dipakai berulang kali di \textit{service} yang berbeda. Mungkin dapat dibilang bahwa SOA adalah dasar dari \textit{microservice}.
+
+\section*{Question 3}
+\begin{problem}
+Buatlah tabel perbandingan yang membahas kekurangan serta kelebihan dari SOA dan \textit{microservice}.
+\end{problem}
+
+\subsection*{Answer 3}
+
+Berikut adalah tabel perbandingan kekurangan dan kelebihan dari SOA dan \textit{microservice}.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{r c c}
+		\toprule
+		                           & \textbf{SOA}        & \textbf{Microservices} \\
+		\midrule
+		\textbf{Code Reusaibility} &                     & \textbf{Kelebihan}     \\
+		\textbf{Kekurangan}        & \textbf{Kekurangan} & \textbf{Kekurangan}    \\
+		\bottomrule
+	\end{tabular}
+	\caption{Perbandingan SOA dan \textit{microservice}}
+\end{table}
+
+
+\section*{Question 4}
+\begin{problem}
+Tuliskan 5 layanan dari AWS atau Azure dan lakukan hal berikut:
+\begin{enumerate}[a.]
+	\item Tentukan apakah layanan tersebut masuk dalam kategori Iaas, PaaS, atau SaaS. Berikan alasannya
+	\item Jelaskan tarif yang dikenakan jika menggunakan layanan tersebut.
+	\item Deskripsikan use case penggunaan layanan tersebut.
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer 4}
+
+Berikut adalah beberapa layanan dari AWS dan penjelasan mengenai layanan tersebut.
+
+\subsubsection*{EC2}
+
+Elastic Compute Cloud --- Sebuah IaaS yang memberikan pelanggan sebuah \textit{Barebone VPS} (\textit{Virtual Private Server}) yang ditujukan untuk membuat / hosting aplikasi enterprise.
+
+Berdasarkan spesifikasi yang dibutuhkan, pelanggan dapat memilih apakah mereka mau dikenakan biaya termuka (\textit{upfront}) dengan \textit{savings plan} atau per-jam yang di-charge per bulan. Biaya per-jam ini akan berbeda-beda tergantung dari jenis instance yang digunakan.
+
+Beberapa use-case dari EC2 adalah hosting aplikasi enterprise, Big Data, distributed workload (Spark dan Hadoop) dan juga migrasi dari situasi on-premise ke cloud.
+
+\subsubsection*{Lightsail}
+
+Mirip seperti EC2, Amazon Lightsail adalah sebuah IaaS yang memberikan pelanggan sebuah \textit{Barebone VPS} (\textit{Virtual Private Server}) yang ditujukan untuk membuat / hosting aplikasi personal. Service ini lebih ditujukan untuk pengguna personal yang akan men-deploy aplikasi berskala simpel.
+
+Seperti EC2, pricing yang ditawarkan berbeda tergantung spesifikasi yang dibutuhkan. Namun, Lightsail tidak memiliki opsi pembayaran \textit{upfront} cost, sehingga pelanggan hanya akan dikenakan biaya per-bulan. Juga, opsi instance yang ditawarkan oleh Lightsail cenderung lebih terbatas (kurang fleksibel) dibandingkan EC2. Tetapi, hal ini memungkinkan Lightsail untuk memiliki biaya yang lebih murah dibandingkan EC2.
+
+Beberapa use-case dari Lightsail meliputi hosting aplikasi personal, seperti blog, portfolio, dan juga situs personal, aplikasi web yang tidak membutuhkan banyak resource, pembelajaran cloud computing, dan juga untuk menjadi environmen development / testing.
+
+\subsubsection*{S3}
+
+Simple Storage Service --- Sebuah PaaS yang memberikan pelanggan sebuah \textit{Object Storage} yang dapat digunakan untuk menyimpan data secara aman dan dapat diakses dari mana saja. PaaS karena pelanggan tidak perlu mengurus infrastruktur storage, namun hanya perlu mengurus bagaimana cara data disimpan / diakses.
+
+Biaya penggunaan S3 umumnya dikenakan berdasarkan volume data yang disimpan (Standard plan per gigabyte) yang berbeda di setiap datacenter. Plan standard mendapatkan bandwidth network gratis untuk menimpan KE S3, dan gratis mengambil 100GB data pertama per bulan.
+
+Use-case S3 meliputi \textit{Object Storage} dari sebuah aplikasi yang mungkin berbentuk user data, profile picture, gambar, video, dll.
+
+\subsubsection*{Lambda}
+
+Sebuah PaaS yang memberikan pelanggan sebuah \textit{Function as a Service} yang dapat digunakan untuk menjalankan kode tanpa harus mengurus infrastruktur server (\textit{serverless}). Pelanggan hanya perlu mengurus bagaimana cara kode tersebut dijalankan.
+
+Biaya penggunaan Lambda dikenakan berdasarkan jumlah invokasi yang dilakukan. Pelanggan akan mendapatkan 1 juta invokasi secara gratis. Setelah itu, pelanggan akan dikenakan biaya per-juta invokasi.
+
+Contoh use-case dari Lambda adalah untuk menjalankan kode / function yang tidak lama untuk dijalankan, tetapi sering di-invokasi namun tidak membutuhkan infrastruktur server yang besar. \textit{image processing},
+
+\subsubsection*{ECS}
+
+Sebuah SaaS yang memberikan pelanggan sebuah \textit{Container as a Service} yang dapat digunakan untuk menjalankan container tanpa harus mengurus infrastruktur server. Pelanggan hanya perlu mengurus environment didalam container tersebut dijalankan.
+
+Biaya penggunaan ECS dikenakan berdasarkan jumlah container yang dijalankan dalam instansi EC2. Penghargaannya juga berbeda tergantung dari jenis instansi EC2 yang digunakan.
+
+Hampir semua server dapat didesain untuk dijalankan di sebuah container melalui Docker atau Kubernetes. Sehingga, use-case dari ECS adalah untuk menjalankan container yang dibuat menggunakan Docker atau Kubernetes.
+
+\section*{Question 5}
+\begin{problem}
+Jelaskan apa itu ubiquitous computing dan bagaimana teknologi tersebut berperan dalam sistem cloud computing?
+\end{problem}
+
+\subsection*{Answer 5}
+
+Ubiquitous Computing adalah konsep / prinsip dimana teknologi digital computing dapat digunakan untuk mempermudah kehidupan manusia dimanaput. Teknologi ini dapat berupa hardware, software, ataupun juga service yang sering digunakan sehari hari. Banyak intisari dari prinsip ini yang terselubung dengan konsep IoT dan Cloud Computing oleh karena kedua hal tersebut dapat diakses dari mana saja (hanya butuh koneksi ke satu sama lain).
+
+\section*{Question 6}
+\begin{problem}
+Jelaskan apa itu internet of thing (IoT) dan berikan satu contoh layanan dari cloud provider yang mendukung IoT beserta use case penggunaannya.
+\end{problem}
+
+\subsection*{Answer 6}
+
+Internet of Things adalah semua benda fisik yang memiliki sensor, kemampuan untuk memproses data dari sensor tersebut, dan mengirimkan hasil proses data tersebut ke device lainnya (\textit{IoT Hub}), maupun cloud.
+
+Salah satu layanan dari cloud provider yang mendukung IoT adalah Tuya. Tuya adalah platform IoT yang memfokusan developer produk fisik untuk membangun produk IoT. Mereka menyediakan SDK dan API untuk platform low-power, dan juga menyediakan platform tool untuk banyak tipe appliance IoT (Sensor temperature, sensor kelembapan, lighting, camera, smart lock, cleaning robot, dan lain lain)
+
+Tuya juga akan dapat terhubung secara otomatis ke Apple HomeKit atau Google Home agar pengguna dapat mengakses sensor dan mengantar perintah ke device IoT melalui aplikasi tersebut.
+
+% ------------------------
+\newpage
+
+\section*{Case Study}
+
+\begin{problem}
+Suatu perusahaan Fintech berencana melakukan migrasi arsitektur TI berbasis monolithic yang digunakan saat ini. Berdasarkan keterangan dari tim system analyst, arsitektur tersebut, sulit mengakomodir traffic yang meningkat dalam beberapa bulan terakhir. Arsitektur monolithic yang digunakan terlihat pada gambar 1. Anda diminta untuk melakukan migrasi arsitektur TI tersebut dengan mendesain arsitektur berbasis microservice berdasarkan arsitektur monolithic yang ada.
+
+\begin{enumerate}[a.]
+	\item Gambarkan rancangan arsitektur microservice dari perusahaan Fintech tersebut dengan jelas (silahkan gunakan gaya anda sendiri dalam menggambarkan desain arsitektur).
+	\item Berikan \textbf{dua} rekomendasi layanan dari cloud provider yang dapat digunakan pada arsitektur microservice yang dirancang. Ceritakan bagaimana service tersebut digunakan dan berperan dalam arsitektur microservice tersebut.
+\end{enumerate}
+\end{problem}
+
+\subsection*{Case Study: Answer 1a}
+
+Berikut adalah potensi arkitektur fintek yang menggunakan microservice:
+
+\begin{figure}[ht]
+	\tiny
+	\centering
+	\incfig{microservices}
+	\caption{Potensi arsitektur fintech menggunakan microservice}
+\end{figure}
+
+\pagebreak
+
+\subsection*{Case Study: Answer 1b}
+
+Banyak layanan cloud provider yang dapat menampung arsitektur microservice. Oleh karena perkembangan teknologi \textit{containerization} yang pesat, hampir semua layanan cloud provider dapat digunakan untuk arsitektur microservice. Semua cloud provider yang dapat menjalankan sebuan container (Docker / K8s) dapat digunakan untuk arsitektur microservice. Berikut adalah beberapa layanan cloud provider yang memiliki support untuk digunakan dalam arsitektur microservice:
+
+\begin{itemize}
+	\item \textbf{AWS ECS, Load Balancer dan VPC} --- AWS ECS dapat digunakan untuk menjalankan container yang dibuat menggunakan Docker. Setelah berjalan, Load Balancer dapat dipasang agar semua routing kepada API dapat tersebar secara merata ke semua instansi. Juga, load balacer dapat mereplikasi jumlah container yang ada agar sistem tetap available. Agar service dapat diakses secara cepat secara internal, Amazon VPC dapat digunakan untuk mendesignasi addressing / subnet yang terdapat pada container.
+
+	\item \textbf{Render.com Services} --- Render adalah layanan cloud provider PaaS yang berfokuskan pada memudahkan developer untuk mendeploy aplikasinya secara \textit{reliable}. Layanan ini menyediakan layanan untuk menjalankan container Docker yang dapat scalable secara otomatis. Mereka juga menyediakan layanan untuk hosting database secara managed agar dapat dipakai oleh container tersebut. Semua container akan terhubung secara otomatis pada satu subnet yang sama sehingga data dapat diakses dengan cepat secara internal. Render ini juga menyediakan monitoring container otamatis yang dapat mengumpulkan telemetri.
+\end{itemize}
+
+\end{document}
