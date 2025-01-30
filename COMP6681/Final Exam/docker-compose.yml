@@ -1,0 +1,12 @@
+services:
+  xampp:
+    image: tomsik68/xampp:8
+    ports:
+      - 3306:3306
+      - 41063:80
+      - 41062:8080
+      - 41061:22
+    volumes:
+      - ./.bashrc:/root/.bashrc
+      - ./project:/root/project
+      - ./apache-conf:/opt/lampp/apache2/conf.d
