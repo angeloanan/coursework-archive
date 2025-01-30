@@ -1,0 +1,282 @@
+\documentclass[
+  11pt, % 10pt - 12pt
+  %letterpaper
+  %indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+% https://castel.dev/post/lecture-notes-2/#including-inkscape-figures-in-a-latex-document
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./graphics/}{#1.pdf_tex}
+}
+
+
+\newcommand{\ipAddress}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+% ! CUSTOM - LST Preset
+\lstset{
+    language=C++,
+    frame=single, % Frames
+    showstringspaces=false, % Don't put marks in string spaces
+    numbers=left, % Line numbers on left
+    numberstyle=\tiny, % Line numbers styling
+    breaklines,
+    basicstyle=\fontfamily{cmtt}\selectfont\small,
+    columns=fullflexible
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{February 28th, 2023}
+% Assignment title
+\title{Final Exam Answer}
+
+% Course details
+\class{Operating Systems (COMP6697001)}
+\professor{Ms.\ Zulfany Erlisa Rasjid}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{File Management --- Question 1}
+
+\begin{problem}
+How would you design a good file management system?
+\end{problem}
+
+\subsection*{Answer 1A}
+
+Writing a file management system is hard and a lot of time requires compromises and smart approaches. Most of the time, it is better for you to use an already made standard / partitioning system that is used widely by operating system such as NTFS or EXT4. To design a good file management system, we need to understand Redundancy, Integrity, Atomicity etc.
+
+\begin{problem}
+Write a program in C/C++ programming language that accepts 2 filenames from the line command. Your program will perform a job like renaming a file by reading the first file and write it to the second file. You should NOT USE a rename function. Perform validation that if the second file already exists, write an error message that renaming the file has failed
+\end{problem}
+
+\subsection*{Answer 1B}
+
+The following is the source code for the program. The source code of the program is also bundled in the zip file:
+
+\lstinputlisting[caption={\texttt{\lstname}}]{code/dupe.cpp}
+
+\section*{I/O Management --- Question 2}
+
+\begin{problem}
+A Hard Disk has 100 tracks numbered 0 to 99. Currently the disk are is at track number 10, previously servicing track 15. Currently the following I/O request arrived: 25, 40, 5, 75, 10, 80, 15, 50, 70, 35. Calculate the total arm movement using the following Disk Arm Scheduling algorithm:
+
+\begin{enumerate}[i.]
+	\item FIFO
+	\item C-Scan
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer 2A}
+
+The following are the hard disk arm scheduling algorithms:
+
+\subsubsection*{FIFO}
+
+With this algorithm, the harddisk will naively follow the order of the requests based on the order of arrival. The following is the table of calculation on how much units the harddisk arm will move:
+
+\begin{center}
+	\begin{tabular}[pos]{r c l}
+		\toprule
+		\textbf{Request} & \textbf{Movement} & \textbf{Total Movement} \\
+		\midrule
+		10 to 25         & 15                & 15                      \\
+		25 to 40         & 15                & 30                      \\
+		40 to 5          & 35                & 65                      \\
+		5 to 75          & 70                & 135                     \\
+		75 to 10         & 65                & 200                     \\
+		10 to 80         & 70                & 270                     \\
+		80 to 15         & 65                & 335                     \\
+		15 to 50         & 35                & 370                     \\
+		50 to 70         & 20                & 390                     \\
+		70 to 35         & 35                & \textbf{425}            \\
+	\end{tabular}
+\end{center}
+
+\subsubsection*{C-Scan}
+
+Given the question above, it is known that the disk head is moving towards the decreasing value (15 to 10). So, we will start by moving the disk head to 0 and getting all required data. The required data will be sorted such that it benefits the scanning algorithm:
+
+\begin{center}
+	\begin{tabular}[pos]{r c l}
+		\toprule
+		\textbf{Request} & \textbf{Movement} & \textbf{Total Movement} \\
+		\midrule
+		Premove: 10 to 0 & 10                & 10                      \\
+		\midrule
+		0 to 5           & 5                 & 15                      \\
+		5 to 10          & 5                 & 20                      \\
+		10 to 15         & 5                 & 25                      \\
+		15 to 25         & 10                & 35                      \\
+		25 to 35         & 10                & 45                      \\
+		35 to 40         & 5                 & 50                      \\
+		40 to 50         & 10                & 60                      \\
+		50 to 70         & 20                & 80                      \\
+		70 to 75         & 5                 & 85                      \\
+		75 to 80         & 5                 & \textbf{90}             \\
+	\end{tabular}
+\end{center}
+
+\begin{problem}
+A large-sized company which is dealing in export of goods, uses a computer system connecting the buyers and vendors. This company serves as an agent for the buyers to order goods from vendors and provide punctual delivery. The company must make sure that all are on schedule and monitors the status of its goods. The data must be available at all times. For this reason the company asked your expertise to recommend a RAID system for them. The budget can be arranged based on proper reasoning. The required budget can be arranged with proper reasoning. What is your recommendation and your reasoning behind that?
+\end{problem}
+
+\subsection*{Answer 2B}
+
+To start off, I would take a look at the scale of the current system, the operations done on the disk (read heavy vs write heavy) and the budget provided. If a system is large enough that multiple disks are required, I'd recommend to do a RAID 6 setup for redundancy and resiliency. RAID 6 extends on RAID 5 where it uses a distributed parity information that is spread across the disk. RAID 6 allows it so that up to 2 disks can fail without losing any data. Performance wise, RAID 6 does not have any performance hit on reading files, but it does have a performance hit on writing files. This is because RAID 6 requires the parity information to be updated on every write operation. Furthermore, RAID 6 is also more expensive than RAID 5 as it requires more disks to be used.
+
+\section*{Memory Management --- Question 3}
+
+\begin{problem}
+In dynamic memory allocation system, the Best Fit memory allocation algorithm will result in less fragmentation, but bad performance. What strategy would you suggest to improve the performance?
+\end{problem}
+
+\subsection*{Answer 3A}
+
+The Best Fit algorithm checks the whole memory space for each request. This is inefficient as it will take a lot of time to scan the whole memory space, looking for the `Best' fit.
+
+To improve the performance, may use the First Fit algorithm. The First Fit algorithm will only check the memory space from the start of the memory space until the end of the memory space. This will improve the performance of the algorithm, as it will only check the memory space once and will not check the whole memory space. However, this will result in more fragmentation which may result in a worse performance in bigger memory space.
+
+\begin{problem} Suppose in a system, initially the memory of size 2048 MB is unoccupied. The memory allocation system uses Buddy System. Simulate the allocation and de- allocation of memory using Buddy System and calculate the internal fragmentation at each step. The following shows the sequence of allocation/deallocation of memory:
+\begin{enumerate}
+	\item Allocate P1 (50M)
+	\item Allocate P2 (200M)
+	\item Allocate P3 (500M)
+	\item Allocate P4 (500M)
+	\item Release P1
+	\item Allocate P5 (100M)
+	\item Release P3
+\end{enumerate}
+\end{problem}
+
+\subsection*{Answer 3B}
+
+The following is the memory allocation and de-allocation of memory using Buddy System:
+
+\begin{center}
+	\footnotesize
+	\incfig{buddy}
+\end{center}
+
+\section*{Virtual Memory --- Question 4}
+
+\begin{problem}
+Describe the relationship between paging and Virtual Memory System.
+\end{problem}
+
+\subsection*{Answer 4A}
+
+\begin{problem}
+The following is a reference to pages that require to allocate memory: \texttt{1, 2, 3, 1, 2, 4, 6, 1, 2, 3, 2, 1, 4, 5, 6, 5}. Use the following Page Replacement Algorithm with 3 frames, determine the number of page faults that will occur using:
+\begin{enumerate}[i.]
+	\item LRU
+	\item Clock
+\end{enumerate}
+
+\end{problem}
+
+\subsection*{Answer 4B}
+
+\subsubsection*{LRU}
+
+The following is the count of page faults that will occur using LRU on 3 frames:
+
+\medskip
+
+\begin{center}
+	\footnotesize
+	\incfig{lrufaults}
+\end{center}
+
+From the graphics above, it is clear that the number of page faults that will occur using LRU is 11.
+
+\subsubsection*{Clock}
+
+The following is the count of page faults that will occur using Clock on 3 frames:
+
+\begin{center}
+	\footnotesize
+	\incfig{clockfaults}
+\end{center}
+
+From the graphics above, it is clear that the number of page faults that will occur using Clock is 4.
+
+\section*{Computer Security --- Question 5}
+
+\begin{problem}
+A company requires to protect their data from being destroyed/damage. This company has 6 divisions and a total of 50 employees (including the Management team). However, there are nobody in charge of the IT matters. The Office Manager asks you for your help. What advice would give the Office Manager with regards to the security requirements and policy in the company?
+\end{problem}
+
+\subsection*{Answer 5A}
+
+I would sugest to hire someone knowledgeable in IT matters to be in charge of IT related security matters. Generally, the first rule to hardening a system is to have a good password policy that is enforced to everyone. A Two-Factor authentication system might also be deployed using an app or a physical security key to provide an extra layer of security. A security awareness program and a security audit program should also be deployed to ensure that the company's security is up to date and is following the security policy.
+
+Moreover, the company should also have a backup system in place to prevent data loss. The backup system should be tested regularly to ensure that it is working properly and taking automatic backups in a timely manner.
+
+Moving from prevention to aftermath, a disaster recovery plan would be beneficial to ensure that the company can recover from a disaster / data loss.
+
+
+\begin{problem}
+Write a small program in C/C++ programming language to find the name of the owner of a file, given the filename that was accepted via the command line
+\end{problem}
+
+\subsection*{Answer 5B}
+
+The following is the source code for the program. The source code of the program is also bundled in the zip file:
+
+\lstinputlisting[caption={\texttt{code/owner.cpp}}]{code/owner.cpp}
+
+\section*{Cloud and IoT Operating System --- Question 6}
+
+\begin{problem}
+Provide an example of IoT applied to transportation that would benefit the public transport system in Indonesia.
+\end{problem}
+
+\subsection*{Answer 6A}
+
+A public bus in Indonesia would help with having an IoT devices attached to them. The device can have the bus' ID number attached to it and track the bus' speed and location. The device can give a more accurate live estimation of the bus' arrival time which will help the public to plan their time better and reduce the waiting time. In addition, with radio sensor of some sort, we can estimate the amount of people which are currently in the bus, providing the estimate `busyness' of the bus.
+
+\begin{problem}
+A CEO of a small to medium company has 100 employees. The following division is available in the company: Human Resources, General Affairs, Sales, Procurement and Finance. The CEO decided to migrate to cloud. Which Service Model would you suggest? Provide your reasoning
+\end{problem}
+
+\subsection*{Answer 6B}
+
+I would suggest to use the Infrastructure as a Service (IaaS) model, specifically having a software like SAP where everyhing can be managed in the cloud. This will help the company to reduce the cost of having a server room and the cost of maintaining the server room. While almost everything that a business requires is available, the company will only need to pay for the usage of service that they're using. In addition, the company will not need to worry about the maintenance of the said system as the cloud service provider will take care of it.
+
+\end{document}

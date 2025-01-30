@@ -1,0 +1,504 @@
+\documentclass[
+  11pt, % 10pt - 12pt
+  %letterpaper
+  %indonesian
+]{assignment}
+
+% Template-specific packages
+\usepackage{mathpazo} % Use the Palatino font
+
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+
+\usepackage{amsmath} % Math!
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+
+% https://castel.dev/post/lecture-notes-2/#including-inkscape-figures-in-a-latex-document
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./graphics/}{#1.pdf_tex}
+}
+
+
+\newcommand{\ipAddress}[1]{{\fontfamily{cmtt}\selectfont #1}} % IP Address custom style!
+
+% ! CUSTOM - LST Preset
+\lstset{
+    language=SQL,
+    frame=single, % Frames
+    showstringspaces=false, % Don't put marks in string spaces
+    numbers=left, % Line numbers on left
+    numberstyle=\tiny, % Line numbers styling
+    breaklines,
+    basicstyle=\fontfamily{cmtt}\selectfont\small,
+    columns=fullflexible,
+}
+
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+% Student name
+\author{Christopher Angelo - 2440041503}
+% Institute or school name
+\institute{BINUS University\\ Global Class}
+
+
+% Due date
+\date{February 7th, 2023}
+% Assignment title
+\title{Final Exam Answer}
+
+% Course details
+\class{Data Mining (COMP6746001)}
+\professor{Ms.\ Dewi Suryani}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	ASSIGNMENT CONTENT
+%----------------------------------------------------------------------------------------
+
+\section*{Question 1}
+
+\begin{problem}
+Table 1 is a dataset of golf data. It comprises the attributes of the weather as the parameter to determine whether it is okay to play golf. Suppose we want to use a decision tree classifier. Please calculate the entropy and gain from each entity and display your result in a tabular form
+
+\medskip
+
+\begin{center}
+	\begin{tabular}{r | c | c c c c}
+		No. & Play & Outlook  & Temp. & Humidity & Wind  \\
+		\toprule
+		1.  & No   & Sunny    & 85    & 85       & False \\
+		2.  & No   & Sunny    & 80    & 90       & True  \\
+		3.  & Yes  & Overcast & 83    & 78       & False \\
+		4.  & Yes  & Rain     & 70    & 96       & False \\
+		5.  & Yes  & Rain     & 68    & 80       & False \\
+		6.  & No   & Rain     & 65    & 70       & True  \\
+		7.  & Yes  & Overcast & 64    & 65       & True  \\
+		8.  & No   & Sunny    & 72    & 95       & False \\
+		9.  & Yes  & Sunny    & 69    & 70       & False \\
+		10. & Yes  & Rain     & 75    & 80       & False \\
+		11. & Yes  & Sunny    & 75    & 70       & True  \\
+		12. & Yes  & Overcast & 72    & 90       & True  \\
+		13. & Yes  & Overcast & 81    & 75       & False \\
+		14. & No   & Rain     & 71    & 80       & True  \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\medskip
+
+Note: The dataset has only 14 records. The attributes are 4: Outlook, Temperature, Humidity,
+and Wind. The class label is 2: Yes and No.
+
+\end{problem}
+
+\subsection*{Answer 1}
+
+Entropy is the degree of randomness in a dataset. The entropy of a dataset is calculated by using the following formula:
+
+\begin{equation}
+	\label{eq:entropy}
+	\begin{split}
+		H(S) &= -\sum_{i=1}^{n} p_i \log_2 p_i
+	\end{split}
+\end{equation}
+
+\subsubsection*{Play}
+
+Calculating the entropy of the Play attribute, we have 9 values positive and 5 values negative. The entropy of the Play attribute is calculated as follows:
+
+\begin{equation}
+	\label{eq:entropy-play}
+	\begin{split}
+		H(Play) &= -\frac{9}{14} \log_2 \frac{9}{14} - \frac{5}{14} \log_2 \frac{5}{14} \\
+		&= 0.94
+	\end{split}
+\end{equation}
+
+\subsubsection*{Outlook}
+
+The Outlook attribute has 3 values: Sunny, Overcast, and Rain. The entropy of the Outlook `Sunny' is calculated as follows:
+
+\begin{equation}
+	\label{eq:entropy-outlook-sunny}
+	\begin{split}
+		H(Outlook, Sunny) &= -\frac{2}{5} \log_2 \frac{2}{5} - \frac{3}{5} \log_2 \frac{3}{5} \\
+		&= 0.97
+	\end{split}
+\end{equation}
+
+The entropy of the Outlook `Overcast' is calculated as follows:
+
+\begin{equation}
+	\label{eq:entropy-outlook-overcast}
+	\begin{split}
+		H(Outlook, Overcast) &= -\frac{4}{4} \log_2 \frac{4}{4} - \frac{0}{4} \log_2 \frac{0}{4} \\
+		&= 0
+	\end{split}
+\end{equation}
+
+The entropy of the Outlook `Rain' is calculated as follows:
+
+\begin{equation}
+	\label{eq:entropy-outlook-rain}
+	\begin{split}
+		H(Outlook, Rain) &= -\frac{3}{5} \log_2 \frac{3}{5} - \frac{2}{5} \log_2 \frac{2}{5} \\
+		&= 0.97
+	\end{split}
+\end{equation}
+
+After those calculations, we can calculate the gain of the Outlook attribute as follows:
+
+\begin{equation}
+	\label{eq:gain-outlook}
+	\begin{split}
+		Gain(Outlook) &= H(Play) - \frac{5}{14} H(Outlook, Sunny) - \frac{4}{14} H(Outlook, Overcast) - \frac{5}{14} H(Outlook, Rain) \\
+		&= 0.94 - \frac{5}{14} 0.97 - \frac{4}{14} 0 - \frac{5}{14} 0.97 \\
+		&= 0.246
+	\end{split}
+\end{equation}
+
+\subsubsection*{Temperature}
+
+Before we calculate the entropy of the Temperature attribute, we need to sort the values of the Temperature attribute. The sorted values including their play values are as follows:
+
+\begin{center}
+	\begin{tabular}{r l}
+		Play & Temp \\
+		\toprule
+		Yes  & 64   \\
+		No   & 65   \\
+		Yes  & 68   \\
+		Yes  & 69   \\
+		Yes  & 70   \\
+		No   & 71   \\
+		No   & 72   \\
+		Yes  & 72   \\
+		Yes  & 75   \\
+		Yes  & 75   \\
+		No   & 80   \\
+		Yes  & 81   \\
+		No   & 85   \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+After calculating entropy and gain splits for each midpoints the value, the best split point that will produce the highest gain after split is 84. Such so, every temperature will be grouped into 2 groups: Cold and Warm where 84 is the splitting point. So, the table data will be as follow:
+
+\begin{center}
+	\begin{tabular}{r l c}
+		Play & Temp      \\
+		\toprule
+		Yes  & Cold & 64 \\
+		No   & Cold & 65 \\
+		Yes  & Cold & 68 \\
+		Yes  & Cold & 69 \\
+		Yes  & Cold & 70 \\
+		No   & Cold & 71 \\
+		No   & Cold & 72 \\
+		Yes  & Cold & 72 \\
+		Yes  & Cold & 75 \\
+		Yes  & Cold & 75 \\
+		No   & Cold & 80 \\
+		Yes  & Cold & 81 \\
+		No   & Warm & 85 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+The entropy of the Temperature where the attribute is Cold is calculated as follows:
+
+\begin{equation}
+	\label{eq:entropy-temp-cold}
+	\begin{split}
+		H(Temperature, Cold) &= -\frac{8}{13} \log_2 \frac{8}{13} - \frac{4}{13} \log_2 \frac{4}{13} \\
+		&= 0.890
+	\end{split}
+\end{equation}
+
+The entropy of the Temperature where the attribute is Warm is calculated as follows:
+
+\begin{equation}
+	\label{eq:entropy-temp-warm}
+	\begin{split}
+		H(Temperature, Warm) &= -\frac{1}{1} \log_2 \frac{1}{1} - \frac{0}{1} \log_2 \frac{0}{1} \\
+		&= 0
+	\end{split}
+\end{equation}
+
+
+So, the gain of the Temperature attribute is calculated as follows:
+
+\begin{equation}
+	\label{eq:gain-temp}
+	\begin{split}
+		Gain(Temperature) &= H(Play) - \frac{13}{14} H(Temperature, Cold) - \frac{1}{14} H(Temperature, Warm) \\
+		&= 0.94 - \frac{13}{14} 0.890 - \frac{1}{14} 0 \\
+		&= 0.151
+	\end{split}
+\end{equation}
+
+
+\subsubsection*{Humidity}
+
+Before we calculate the entropy of the Humidity attribute, we need to sort the values of the Humidity attribute. The sorted values including their play values are as follows:
+
+\begin{center}
+	\begin{tabular}{r | l}
+		Play & Humidity \\
+		\toprule
+		Yes  & 65       \\
+		No   & 70       \\
+		Yes  & 70       \\
+		Yes  & 70       \\
+		Yes  & 75       \\
+		Yes  & 78       \\
+		No   & 80       \\
+		Yes  & 80       \\
+		Yes  & 80       \\
+		No   & 85       \\
+		No   & 90       \\
+		Yes  & 90       \\
+		No   & 95       \\
+		Yes  & 96       \\
+	\end{tabular}
+\end{center}
+
+After calculating entropy and gain splits for each midpoints the value, the best split point that will produce the highest gain after split is 82.5. Such so, every humidity will be grouped into 2 groups: Humid and dry where 82.5 is the splitting point. So, the table data will be as follow:
+
+\begin{center}
+	\begin{tabular}{r | l | c}
+		Play & Humidity Group & Humidity \\
+		\toprule
+		Yes  & Dry            & 65       \\
+		No   & Dry            & 70       \\
+		Yes  & Dry            & 70       \\
+		Yes  & Dry            & 70       \\
+		Yes  & Dry            & 75       \\
+		Yes  & Dry            & 78       \\
+		No   & Dry            & 80       \\
+		Yes  & Dry            & 80       \\
+		Yes  & Dry            & 80       \\
+		No   & Humid          & 85       \\
+		No   & Humid          & 90       \\
+		Yes  & Humid          & 90       \\
+		No   & Humid          & 95       \\
+		Yes  & Humid          & 96       \\
+	\end{tabular}
+\end{center}
+
+The entropy of the Humidity where the attribute is Dry is calculated as follows:
+
+\begin{equation}
+	\label{eq:entropy-humidity-dry}
+	\begin{split}
+		H(Humidity, Dry) &= -\frac{7}{9} \log_2 \frac{7}{9} - \frac{2}{9} \log_2 \frac{2}{9} \\
+		&= 0.991
+	\end{split}
+\end{equation}
+
+The entropy of the Humidity where the attribute is Humid is calculated as follows:
+
+\begin{equation}
+	\label{eq:entropy-humidity-humid}
+	\begin{split}
+		H(Humidity, Humid) &= -\frac{3}{5} \log_2 \frac{3}{5} - \frac{2}{5} \log_2 \frac{2}{5} \\
+		&= 0.971
+	\end{split}
+\end{equation}
+
+So, the gain of the Humidity attribute is calculated as follows:
+
+\begin{equation}
+	\label{eq:gain-humidity}
+	\begin{split}
+		Gain(Humidity) &= H(Play) - \frac{9}{14} H(Humidity, Dry) - \frac{5}{14} H(Humidity, Humid) \\
+		&= 0.94 - \frac{9}{14} 0.991 - \frac{5}{14} 0.971 \\
+		&= 0.151
+	\end{split}
+\end{equation}
+
+\subsubsection*{Wind}
+
+The entrop of the Wind where the attribute is True is calculated as follows:
+
+\begin{equation}
+	\label{eq:entropy-wind-true}
+	\begin{split}
+		H(Wind, True) &= -\frac{3}{6} \log_2 \frac{3}{6} - \frac{3}{6} \log_2 \frac{3}{6} \\
+		&= 1
+	\end{split}
+\end{equation}
+
+The entropy of the Wind where the attribute is False is calculated as follows:
+
+\begin{equation}
+	\label{eq:entropy-wind-false}
+	\begin{split}
+		H(Wind, False) &= -\frac{6}{8} \log_2 \frac{6}{8} - \frac{2}{8} \log_2 \frac{2}{8} \\
+		&= 0.811
+	\end{split}
+\end{equation}
+
+So, the gain of the Wind attribute is calculated as follows:
+
+\begin{equation}
+	\label{eq:gain-wind}
+	\begin{split}
+		Gain(Wind) &= H(Play) - \frac{6}{14} H(Wind, True) - \frac{8}{14} H(Wind, False) \\
+		&= 0.94 - \frac{6}{14} 0.918 - \frac{8}{14} 0.954 \\
+		&= 0.048
+	\end{split}
+\end{equation}
+
+
+\section*{Question 2}
+\begin{problem}
+Good clustering method is considered by high intra-class similarity and low inter-class similarity. Elaborate on the statement above with your own words and provide the example.
+\end{problem}
+
+\subsection*{Answer 2}
+
+The process of clustering refers to the grouping / clumping of data points into a group (clusters). When we have a dataset, we can use clustering to group the data points into a group. The more data points that are similar to each other, the more likely they will be grouped into the same cluster. The more data points that are different from each other, the more likely they will be grouped into different clusters.
+
+It is naturally great to have a little amount of cluster which have large encompassing group in the dataset while still having a big distance between the clusters. Though, these type of analysis won't always result in a clear-cut outcome of the clustering.
+
+An \textbf{Intra}-class similarity is the similarity between the data points within the same cluster. As it is stated in the question: \textit{A good clustering method is considered by high intra-class similarity}, which means that the more similar the data points within the same cluster, the better the clustering method is.
+
+\begin{figure}[H]
+	\centering
+	\def\columnwidth{0.5\textwidth}
+	\incfig{intra}
+	\caption{Intra-class similarity}\label{fig:intra-class}
+\end{figure}
+
+An \textbf{Inter}-class similarity is the similarity between the data points between different clusters. Continuing on the statement from the question, the more different the data points between different clusters, the better the clustering result is.
+
+\begin{figure}[H]
+	\centering
+	\def\columnwidth{0.9\textwidth}
+	\incfig{inter}
+	\caption{Inter-class similarity}\label{fig:inter-class}
+\end{figure}
+
+\section*{Question 3}
+\begin{problem}
+The following is the actual and the predicted result of the prediction
+
+\medskip
+
+\textit{Both tables omitted for brevity \ldots}
+
+\medskip
+
+The experiment result is to predict each square with the 2 class label: BLUE and RED. Other squares which do not meet the threshold remain empty. Your task is:
+
+\begin{enumerate}[a.]
+	\item Create your own predicted-B table based on the predicted-A table by changing the color of the grid to the opposite color (if the grid in the predicted-A is RED, then change it to BLUE and vice versa). This changing grid is based on the first letter of your name and mod by 10 for the X axis, and the second letter of your name is mod by 5 for your Y axis. The coordinates X and Y will show you the location of the grid. If you have 2 words in your name, you must change 2 grids, and so on
+	\item Generate your confusion matrix based on the actual data and (your own) predicted-B data.
+	\item Based on the confusion matrix you generated, calculate the accuracy, recall, precision, and F1-Score.
+\end{enumerate}
+
+\end{problem}
+
+\subsection*{Answer 3a}
+
+My first two letters in each word of my name is CH and AN.\@ CH is the 3rd and the 8th letter in the alphabet, while AN is the 1st and 14th letter in the alphabet. Thus, the following is the grid that I have changed:
+
+\begin{center}
+	\begin{tabular}{r | c c}
+		Letter & X & Y \\
+		\toprule
+		CH     & 3 & 3 \\
+		AN     & 1 & 4 \\
+	\end{tabular}
+\end{center}
+
+So the following is the predicted-B table (Bolded cells are the cells that I have changed):
+
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{c | c | c | c | c | c | c | c | c | c | c}
+			  & 0    & 1    & 2    & 3             & 4   & 5   & 6   & 7   & 8    & 9    \\
+			\midrule
+			0 & BLUE &      & BLUE &               &     &     &     &     & RED  &      \\
+			\midrule
+			1 &      & BLUE & RED  &               &     &     & RED &     & RED  &      \\
+			\midrule
+			2 & BLUE & BLUE & RED  &               &     &     &     & RED &      & BLUE \\
+			\midrule
+			3 &      & BLUE & RED  & \textbf{BLUE} &     & RED & RED &     & BLUE & BLUE \\
+			\midrule
+			4 &      &      &      &               & RED & RED &     &     &      &      \\
+		\end{tabular}
+	\end{center}
+	\caption{Predicted-B table}\label{fig:predicted-b}
+\end{table}
+
+\subsection*{Answer 3b}
+
+\begin{center}
+	\begin{tabular}{c  c  c  c}
+		                         &                           & \multicolumn{2}{c}{Actual}                           \\
+		                         & \multicolumn{1}{c|}{}     & \multicolumn{1}{c}{BLUE}   & \multicolumn{1}{c}{RED} \\
+		\cline{2-4}
+		\multirow{2}*{Predicted} & \multicolumn{1}{c|}{BLUE} & \multicolumn{1}{c}{9}      & \multicolumn{1}{c}{1}   \\
+		                         & \multicolumn{1}{c|}{RED}  & \multicolumn{1}{c}{4}      & \multicolumn{1}{c}{7}   \\
+	\end{tabular}
+\end{center}
+
+\subsection*{Answer 3c}
+
+The accuracy of the model is calculated by the following formula:
+
+\begin{equation}
+	\text{Accuracy} = \frac{9 + 7}{9 + 1 + 4 + 7} = \frac{16}{21} = 0.7619
+\end{equation}
+
+The recall of the model is calculated by the following formula:
+
+\begin{equation}
+	\text{Recall} = \frac{9}{9 + 4} = \frac{9}{13} = 0.6923
+\end{equation}
+
+The precision of the model is calculated by the following formula:
+
+\begin{equation}
+	\text{Precision} = \frac{9}{9 + 1} = \frac{9}{10} = 0.9
+\end{equation}
+
+The F1-Score of the model is calculated by the following formula:
+
+\begin{equation}
+	\text{F1-Score} = \frac{2 \times 0.6923 \times 0.9}{0.6923 + 0.9} = \frac{1.2571}{1.5923} = 0.7895
+\end{equation}
+
+% ----------------
+
+\section*{Question 4}
+\begin{problem}
+From the AoL assignments you have worked on with the group, please elaborate on the parts of your contribution to the project you are working on
+\end{problem}
+
+\subsection*{Answer 4}
+
+Early on in the AoL assignment just before the mid-exam, I have helped the team on structuring the assignment where we've discussed on the question / problem that were to be answered upon. We have looked on Kaggle for datasets that we can use for the assignment. We have also discussed on the tools that we can use for the assignment. We have decided to use Python and Jupyter Notebook for the assignment.
+
+We have thought on using a multiplayer tool for the assignment (such as deploying our own tool via using Coder OSS or using a PaaS such as Deepnote). But since it was more known, we have decided to use Google Colab for the assignment. Since Google Colab multiplayer support is not that great, we have also decided to have a main person to do the code while other members brainstorm and write the needed writings.
+
+\end{document}
