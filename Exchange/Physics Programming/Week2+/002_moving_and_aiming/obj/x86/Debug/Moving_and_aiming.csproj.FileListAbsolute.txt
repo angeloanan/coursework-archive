@@ -1,0 +1,6 @@
+/home/xy/class/Physics Programming/Week2+/002_moving_and_aiming/bin/Debug/MovingAndAiming.exe
+/home/xy/class/Physics Programming/Week2+/002_moving_and_aiming/bin/Debug/MovingAndAiming.pdb
+/home/xy/class/Physics Programming/Week2+/002_moving_and_aiming/obj/x86/Debug/Moving_and_aiming.csproj.AssemblyReference.cache
+/home/xy/class/Physics Programming/Week2+/002_moving_and_aiming/obj/x86/Debug/Moving_and_aiming.csproj.CoreCompileInputs.cache
+/home/xy/class/Physics Programming/Week2+/002_moving_and_aiming/obj/x86/Debug/MovingAndAiming.exe
+/home/xy/class/Physics Programming/Week2+/002_moving_and_aiming/obj/x86/Debug/MovingAndAiming.pdb

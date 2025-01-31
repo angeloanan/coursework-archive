@@ -1,0 +1,6 @@
+/home/xy/class/Physics Programming/Week4+/001_vector_projection/bin/Debug/GXPEngine.exe
+/home/xy/class/Physics Programming/Week4+/001_vector_projection/bin/Debug/GXPEngine.pdb
+/home/xy/class/Physics Programming/Week4+/001_vector_projection/obj/x86/Debug/GXPEngine.csproj.AssemblyReference.cache
+/home/xy/class/Physics Programming/Week4+/001_vector_projection/obj/x86/Debug/GXPEngine.csproj.CoreCompileInputs.cache
+/home/xy/class/Physics Programming/Week4+/001_vector_projection/obj/x86/Debug/GXPEngine.exe
+/home/xy/class/Physics Programming/Week4+/001_vector_projection/obj/x86/Debug/GXPEngine.pdb

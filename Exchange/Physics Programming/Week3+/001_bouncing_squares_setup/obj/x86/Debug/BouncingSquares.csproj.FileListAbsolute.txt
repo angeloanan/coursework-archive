@@ -1,0 +1,6 @@
+/home/xy/class/Physics Programming/Week3+/001_bouncing_squares_setup/bin/Debug/BouncingSquares.exe
+/home/xy/class/Physics Programming/Week3+/001_bouncing_squares_setup/bin/Debug/BouncingSquares.pdb
+/home/xy/class/Physics Programming/Week3+/001_bouncing_squares_setup/obj/x86/Debug/BouncingSquares.csproj.AssemblyReference.cache
+/home/xy/class/Physics Programming/Week3+/001_bouncing_squares_setup/obj/x86/Debug/BouncingSquares.csproj.CoreCompileInputs.cache
+/home/xy/class/Physics Programming/Week3+/001_bouncing_squares_setup/obj/x86/Debug/BouncingSquares.exe
+/home/xy/class/Physics Programming/Week3+/001_bouncing_squares_setup/obj/x86/Debug/BouncingSquares.pdb

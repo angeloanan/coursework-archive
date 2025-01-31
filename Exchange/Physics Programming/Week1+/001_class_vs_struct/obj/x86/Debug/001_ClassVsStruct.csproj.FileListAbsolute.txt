@@ -1,0 +1,6 @@
+/home/xy/class/Physics Programming/Week1+/001_class_vs_struct/bin/Debug/001_ClassVsStruct.exe
+/home/xy/class/Physics Programming/Week1+/001_class_vs_struct/bin/Debug/001_ClassVsStruct.pdb
+/home/xy/class/Physics Programming/Week1+/001_class_vs_struct/obj/x86/Debug/001_ClassVsStruct.csproj.AssemblyReference.cache
+/home/xy/class/Physics Programming/Week1+/001_class_vs_struct/obj/x86/Debug/001_ClassVsStruct.csproj.CoreCompileInputs.cache
+/home/xy/class/Physics Programming/Week1+/001_class_vs_struct/obj/x86/Debug/001_ClassVsStruct.exe
+/home/xy/class/Physics Programming/Week1+/001_class_vs_struct/obj/x86/Debug/001_ClassVsStruct.pdb
